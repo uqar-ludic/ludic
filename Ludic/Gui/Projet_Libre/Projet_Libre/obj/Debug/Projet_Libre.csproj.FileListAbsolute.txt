@@ -1,0 +1,6 @@
+C:\Users\Quentin\Documents\Visual Studio 2013\Projects\UQAR\Ludic\Gui\Projet_Libre\Projet_Libre\bin\Projet_Libre.dll.config
+C:\Users\Quentin\Documents\Visual Studio 2013\Projects\UQAR\Ludic\Gui\Projet_Libre\Projet_Libre\bin\Projet_Libre.dll
+C:\Users\Quentin\Documents\Visual Studio 2013\Projects\UQAR\Ludic\Gui\Projet_Libre\Projet_Libre\bin\Projet_Libre.pdb
+C:\Users\Quentin\Documents\Visual Studio 2013\Projects\UQAR\Ludic\Gui\Projet_Libre\Projet_Libre\obj\Debug\Projet_Libre.csprojResolveAssemblyReference.cache
+C:\Users\Quentin\Documents\Visual Studio 2013\Projects\UQAR\Ludic\Gui\Projet_Libre\Projet_Libre\obj\Debug\Projet_Libre.dll
+C:\Users\Quentin\Documents\Visual Studio 2013\Projects\UQAR\Ludic\Gui\Projet_Libre\Projet_Libre\obj\Debug\Projet_Libre.pdb

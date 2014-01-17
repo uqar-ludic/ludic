@@ -1,0 +1,134 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="SandBox.Master.cs" Inherits="Projet_Libre.Site" %>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head runat="server">
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+        <title>Test Master Page</title>
+        <link href="Content/MasterPage.css" rel="stylesheet" type="text/css" />
+        <link type="text/css" rel="stylesheet" href="Content/bootstrap.min.css"/> 
+        <asp:ContentPlaceHolder ID="head" runat="server">
+        </asp:ContentPlaceHolder>
+    </head>
+    <body class="body_Bg">
+        <nav class="navbar navbar-default navbar-fixed-top" role="navigation" id="navMaster">
+            <div class="navbar-header" id="logMaster"><a class="navbar-brand " href="Default.aspx"><b> SandBox </b></a></div>
+                <ul class="nav navbar-nav">
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"> Profil <b class="caret"></b></a>
+                        <ul class="dropdown-menu"  id="dropProfilMaster">
+                            <li><a href="#">Mes exercices</a></li>
+                            <li class="divider"></li>
+                            <li><a href="#">Mon palmares</a></li>
+                            <li class="divider"></li>
+                            <li><a href="#">Editer mon profil</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <form class="navbar-form navbar-left" role="search">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search"/>
+                    </div>
+                    <button type="submit" class="btn btn-default">Submit</button>
+                </form>
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-user"></i> Invité <b class="caret"></b></a>
+                        <ul class="dropdown-menu" style="padding: 15px;min-width: 250px;">
+                            <li>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <form class="form" role="form" method="post" action="login" accept-charset="UTF-8" id="login-nav">
+                                            <div class="form-group">
+                                                <label class="sr-only" for="InputEmail">Email address</label>
+                                                <input type="email" class="form-control" id="InputEmail" placeholder="Email address" required="required"/>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="sr-only" for="InputPassword">Password</label>
+                                                <input type="password" class="form-control" id="InputPassword" placeholder="Password" required="required"/>
+                                            </div>
+                                            <div class="checkbox">
+                                                <label>
+                                                    <input type="checkbox"/> Se connecter automatiquement
+                                                </label>
+                                            </div>
+                                            <div class="form-group">
+                                                <button type="submit" class="btn btn-success btn-xs btn-block"><i class="glyphicon glyphicon-ok-circle"></i> Se connecter</button>
+                                                <button  type="submit" class="btn btn-danger btn-xs btn-block"><i class="glyphicon glyphicon-remove-circle"></i> Se déconnecter</button>
+                                            </div>
+                                        </form>
+                                                <button class="btn btn-success btn-xs btn-block" data-toggle="modal" data-target="#myModal"><i class="glyphicon glyphicon-info-sign"></i> S'inscrire</button>
+
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+        </nav>
+    
+    <div class="container pull-left" id="containers">
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4 class="modal-title" id="myModalLabel">Inscription</h4>
+          </div>
+          <div class="modal-body">
+                    <form class="form form-signup" role="form">
+                    <div class="form-group">
+                        <div class="input-group">
+                            <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
+                            <input type="text" class="form-control" placeholder="Username" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="input-group">
+                            <span class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span>
+                            </span>
+                            <input type="text" class="form-control" placeholder="Email Address" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="input-group">
+                            <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
+                            <input type="password" class="form-control" placeholder="Password" />
+                            <input type="password" class="form-control" placeholder="Re-Password" />
+                        </div>
+                    </div>
+                    
+                </form>
+            </div>
+          <div class="modal-footer">
+              <a href="http://www.jquery2dotnet.com" class="btn btn-lg btn-primary btn-block" role="button">
+                    SUBMIT</a> 
+          </div>
+        </div>
+      </div>
+    </div>
+        <div class="row col-lg-12">
+            <div id="leftContent" class="affix col-lg-2 pull-left lvl1" data-offset-top="200">
+                <asp:ContentPlaceHolder id="LeftContent" runat="server">
+        
+                </asp:ContentPlaceHolder>
+            </div>
+            <div id="mainContent" class="col-lg-10 well pull-right">
+                <asp:ContentPlaceHolder id="MainContent" runat="server">
+                </asp:ContentPlaceHolder>
+            </div>
+        </div>
+    </div>
+    <div id="footerContent" class="navbar-fixed-bottom navbar-inverse text-center">
+        <i class="glyphicon glyphicon-user"></i> <a href="#">Admin</a> 
+        | <i class="glyphicon glyphicon-calendar"></i><b id="date"></b>
+        | <i class="glyphicon glyphicon-question-sign"></i> <a href="#">About</a>
+        | <i class="glyphicon glyphicon-envelope"></i> <a href="#">Contact</a>
+    </div>
+    <script src="Scripts/jquery-1.9.1.min.js"></script>
+    <script src="Scripts/bootstrap.min.js"></script>
+    <script src="Scripts/Date.js"></script>
+    <script src="Scripts/Menu.js"></script>
+    <script src="Scripts/starr.js"></script>
+    </body>
+</html>
+    
