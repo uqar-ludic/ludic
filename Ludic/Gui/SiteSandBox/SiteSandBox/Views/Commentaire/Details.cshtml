@@ -1,0 +1,36 @@
+﻿@model SiteSandBox.Models.Commentaire
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>Commentaire</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Comment)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Comment)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Value)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Value)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Exercice.Name)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Exercice.Name)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.CommentaireId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
