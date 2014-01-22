@@ -1,1 +1,3 @@
 C:\Users\Quentin\Documents\Visual Studio 2013\Projects\UQAR\Ludic\Exec\bin\Debug\Redirect_projet_libre.exe.config
+C:\Users\Quentin\Source\Repos\ludic\Ludic\Exec\bin\Debug\Redirect_projet_libre.exe.config
+C:\Users\Quentin\Source\Repos\ludic\Ludic\Exec\obj\Debug\Redirect_projet_libre.csprojResolveAssemblyReference.cache
