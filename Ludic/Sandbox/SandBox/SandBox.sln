@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RemotingInterface", "RemotingInterface\RemotingInterface.csproj", "{55190C73-2F07-4443-A34F-B750D686F8BC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SandBox", "SandBox\SandBox.csproj", "{F88118BA-8709-450E-9D2E-FB0F545C72CC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{55190C73-2F07-4443-A34F-B750D686F8BC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{55190C73-2F07-4443-A34F-B750D686F8BC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{55190C73-2F07-4443-A34F-B750D686F8BC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{55190C73-2F07-4443-A34F-B750D686F8BC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F88118BA-8709-450E-9D2E-FB0F545C72CC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F88118BA-8709-450E-9D2E-FB0F545C72CC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F88118BA-8709-450E-9D2E-FB0F545C72CC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F88118BA-8709-450E-9D2E-FB0F545C72CC}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
