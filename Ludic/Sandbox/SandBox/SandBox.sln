@@ -5,6 +5,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RemotingInterface", "Remoti
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SandBox", "SandBox\SandBox.csproj", "{F88118BA-8709-450E-9D2E-FB0F545C72CC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PrototypeSandbox", "..\PrototypeSandbox\PrototypeSandbox\PrototypeSandbox.csproj", "{F9DC1ABC-C61B-45FC-B75F-17B9CBE9256E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebSandBox", "WebSandBox\WebSandBox.csproj", "{AF9A0CBD-3281-4450-91EF-6A533F48E22B}"
+	ProjectSection(ProjectDependencies) = postProject
+		{F88118BA-8709-450E-9D2E-FB0F545C72CC} = {F88118BA-8709-450E-9D2E-FB0F545C72CC}
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -19,6 +26,14 @@ Global
 		{F88118BA-8709-450E-9D2E-FB0F545C72CC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F88118BA-8709-450E-9D2E-FB0F545C72CC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F88118BA-8709-450E-9D2E-FB0F545C72CC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F9DC1ABC-C61B-45FC-B75F-17B9CBE9256E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F9DC1ABC-C61B-45FC-B75F-17B9CBE9256E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F9DC1ABC-C61B-45FC-B75F-17B9CBE9256E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F9DC1ABC-C61B-45FC-B75F-17B9CBE9256E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AF9A0CBD-3281-4450-91EF-6A533F48E22B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AF9A0CBD-3281-4450-91EF-6A533F48E22B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AF9A0CBD-3281-4450-91EF-6A533F48E22B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AF9A0CBD-3281-4450-91EF-6A533F48E22B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

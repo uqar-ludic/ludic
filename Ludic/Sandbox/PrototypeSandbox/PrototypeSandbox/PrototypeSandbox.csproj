@@ -32,8 +32,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="RemotingInterface">
-      <HintPath>..\..\SandBox\RemotingInterface\obj\Debug\RemotingInterface.dll</HintPath>
+    <Reference Include="SandBox">
+      <HintPath>..\..\SandBox\SandBox\bin\Debug\SandBox.exe</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />

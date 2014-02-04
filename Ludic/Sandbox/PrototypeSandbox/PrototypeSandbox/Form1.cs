@@ -8,7 +8,7 @@ using System.Linq;
 using System.Runtime.Remoting.Channels;
 using System.Runtime.Remoting.Channels.Http;
 using System.Text;
-using RemotingInterface;
+using SandBox;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Security.Permissions;
@@ -19,24 +19,25 @@ namespace PrototypeSandbox
     public partial class Form1 : Form
     {
 
-        // Variables 
+        // Variables
+ 
         public string PathexecutableSource = "";
         public string PathExecutable = "";
         public Dictionary<string, IPermission> Permissions;
-        //private RemotingInterface.IObjetDistant ExcuteCode;
 
-        InformationsUtil InfoUtilisateur = new InformationsUtil();
-        IObjetDistant ObjDist = (IObjetDistant)Activator.GetObject(typeof(IObjetDistant), "http://localhost:8081/Sandbox.soap");
+        //private RemotingInterface.IObjetDistant ExcuteCode;
+        //InformationsUtil InfoUtilisateur = new InformationsUtil();
+        //IObjetDistant ObjDist = (IObjetDistant)Activator.GetObject(typeof(IObjetDistant), "http://localhost:8081/Sandbox.soap");
   
         public Form1()
         {
             InitializeComponent();
 
-            HttpChannel channel = new HttpChannel();
-            ChannelServices.RegisterChannel(channel, false);
-            IObjetDistant ObjLoc = (IObjetDistant)Activator.GetObject(typeof(IObjetDistant), "http://localhost:8081/Sandbox.soap");
+            //HttpChannel channel = new HttpChannel();
+            //ChannelServices.RegisterChannel(channel, false);
+            //IObjetDistant ObjLoc = (IObjetDistant)Activator.GetObject(typeof(IObjetDistant), "http://localhost:8081/Sandbox.soap");
        
-            ChannelServices.UnregisterChannel(channel);
+            //ChannelServices.UnregisterChannel(channel);
 
             // Charger les infos du fichier de configuration 
 
@@ -49,9 +50,9 @@ namespace PrototypeSandbox
 
             // informations utilisateur, à voir ce qu'il y'a lieu de rajouter comme infos
 
-            InfoUtilisateur.Nomutil = "Utilisateur";
-            InfoUtilisateur.dateSoumi = DateTime.Now;
-            InfoUtilisateur.Exercise = "Exercice numero 1";
+            //InfoUtilisateur.Nomutil = "Utilisateur";
+            //InfoUtilisateur.dateSoumi = DateTime.Now;
+            //InfoUtilisateur.Exercise = "Exercice numero 1";
 
         }
 
@@ -117,86 +118,40 @@ namespace PrototypeSandbox
 
         private void button1_Click(object sender, EventArgs e)
         {
-
-
             List<string> ListPermissions = new List<string>();
 
             openFileDialog1.InitialDirectory = "c:\\";
 
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
-                try
-                {
-                    using (StreamReader sr = new StreamReader(openFileDialog1.FileName.ToString()))
-                    {
-                        string line;
-                        while ((line = sr.ReadLine()) != null)
-                        {
-                            ListPermissions.Add(line);
-                        }
-                    }
-                    Permissions = PreparePermission(ListPermissions);
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Erreur: ne peut pas lire sur le disque: " + ex.Message);
-                }
+
+                
+                //try
+                //{
+                //    using (StreamReader sr = new StreamReader(openFileDialog1.FileName.ToString()))
+                //    {
+                //        string line;
+                //        while ((line = sr.ReadLine()) != null)
+                //        {
+                //            ListPermissions.Add(line);
+                //        }
+                //    }
+                //    Permissions = PreparePermission(ListPermissions);
+                //}
+                //catch (Exception ex)
+                //{
+                //    MessageBox.Show("Erreur: ne peut pas lire sur le disque: " + ex.Message);
+                //}
             }
 
         }
         #endregion
 
-        #region Creation des permission (Ipermission) à ajouter au PermissionSet
-
-        public Dictionary<string, IPermission> PreparePermission(List<string> DemandPermissions)
-        {
-            // On regarde les permission demandées et on associe l'objet qui crée la permission 
-            Dictionary<string, IPermission> Permissions = new Dictionary<string, IPermission>();
-            try
-            {
-
-                foreach (string item in DemandPermissions)
-                {
-
-                    switch (item.ToUpper())
-                    {
-                        case "WRITE":
-                            Permissions.Add("Write", new FileIOPermission(FileIOPermissionAccess.Write, PathExecutable));
-                            Permissions.Add("Write", new FileIOPermission(FileIOPermissionAccess.PathDiscovery, PathExecutable));
-                            break;
-                        case "READ":
-                            Permissions.Add("Write", new FileIOPermission(FileIOPermissionAccess.PathDiscovery, PathExecutable));
-                            Permissions.Add("Read", new FileIOPermission(FileIOPermissionAccess.Read, PathExecutable));
-                            new FileIOPermission(FileIOPermissionAccess.PathDiscovery, PathExecutable); break;
-                        case "READWRITE":
-                            Permissions.Add("Write", new FileIOPermission(FileIOPermissionAccess.PathDiscovery, PathExecutable));
-                            Permissions.Add("ReadWrite", new FileIOPermission(FileIOPermissionAccess.PathDiscovery, PathExecutable));
-                            new FileIOPermission(FileIOPermissionAccess.PathDiscovery, PathExecutable); break;
-                        default:
-                            Permissions.Add("Execute", new SecurityPermission(SecurityPermissionFlag.Execution)); break;
-                    }
-                }
-
-                return Permissions;
-            }
-            catch (Exception e)
-            {
-
-                e.ToString();
-            }
-
-            return Permissions;
-
-        }
-
-        #endregion
-
+       
         private void button3_Click(object sender, EventArgs e)
         {
             try
             {
-
-               
                 ExecuterCode(Permissions, PathExecutable);
             }
             catch (Exception ex)
@@ -214,10 +169,10 @@ namespace PrototypeSandbox
         {
 
             // Appel l'execution du code dans le sandbox 
-
+            SandBox.SandBox sandbox = new SandBox.SandBox();
             //string resul = ExecuterCode(Permissions, PathExecutable);    //  ExcuteCode(Permissions, PathExecutable);
            
-            string resul = ObjDist.ExcuteCode(Permissions, PathExecutable);
+            string resul = sandbox.ExcuteCode(Permissions, PathExecutable);
 
             return "";
         }

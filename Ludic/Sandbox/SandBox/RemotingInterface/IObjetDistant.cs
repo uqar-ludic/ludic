@@ -15,10 +15,10 @@ namespace RemotingInterface
          // Ici, on y trouve les interface du sandbox 
 
         // methode d'excution du code, la classe sandbox doit implimenter cette methode.
+
          string ExcuteCode(Dictionary<string, IPermission> ListPersmissions, string Path);
 
         // Voir aussi si on va intégrer la préparation des permissions ?  voir avec Steven ? 
-
 
     }
 
@@ -39,8 +39,5 @@ namespace RemotingInterface
              public InformationsUtil() { }
 
          }
-
-
-
     
 }
