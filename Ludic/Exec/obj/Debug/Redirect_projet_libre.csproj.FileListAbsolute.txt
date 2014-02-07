@@ -1,12 +1,7 @@
-C:\Users\Antoine\Documents\Projet_UQAR\Ludic\Exec\bin\Debug\Redirect_projet_libre.exe.config
-C:\Users\Antoine\Documents\Projet_UQAR\Ludic\Exec\bin\Debug\Redirect_projet_libre.exe
-C:\Users\Antoine\Documents\Projet_UQAR\Ludic\Exec\bin\Debug\Redirect_projet_libre.pdb
-C:\Users\Antoine\Documents\Projet_UQAR\Ludic\Exec\obj\Debug\Redirect_projet_libre.csprojResolveAssemblyReference.cache
-C:\Users\Antoine\Documents\Projet_UQAR\Ludic\Exec\obj\Debug\Redirect_projet_libre.exe
-C:\Users\Antoine\Documents\Projet_UQAR\Ludic\Exec\obj\Debug\Redirect_projet_libre.pdb
-C:\Users\Noude\Documents\Projet_UQAR\Ludic\Exec\bin\Debug\Redirect_projet_libre.exe.config
-C:\Users\Noude\Documents\Projet_UQAR\Ludic\Exec\obj\Debug\Redirect_projet_libre.exe
-C:\Users\Noude\Documents\Projet_UQAR\Ludic\Exec\obj\Debug\Redirect_projet_libre.pdb
-C:\Users\Noude\Documents\Projet_UQAR\Ludic\Exec\bin\Debug\Redirect_projet_libre.exe
-C:\Users\Noude\Documents\Projet_UQAR\Ludic\Exec\bin\Debug\Redirect_projet_libre.pdb
-C:\Users\Noude\Documents\Projet_UQAR\Ludic\Exec\obj\Debug\Redirect_projet_libre.csprojResolveAssemblyReference.cache
+C:\Users\Quentin\Documents\Visual Studio 2013\Projects\UQAR\Ludic\Exec\bin\Debug\Redirect_projet_libre.exe.config
+C:\Users\Quentin\Source\Repos\ludic\Ludic\Exec\bin\Debug\Redirect_projet_libre.exe.config
+C:\Users\Quentin\Source\Repos\ludic\Ludic\Exec\bin\Debug\Redirect_projet_libre.exe
+C:\Users\Quentin\Source\Repos\ludic\Ludic\Exec\bin\Debug\Redirect_projet_libre.pdb
+C:\Users\Quentin\Source\Repos\ludic\Ludic\Exec\obj\Debug\Redirect_projet_libre.csprojResolveAssemblyReference.cache
+C:\Users\Quentin\Source\Repos\ludic\Ludic\Exec\obj\Debug\Redirect_projet_libre.exe
+C:\Users\Quentin\Source\Repos\ludic\Ludic\Exec\obj\Debug\Redirect_projet_libre.pdb
