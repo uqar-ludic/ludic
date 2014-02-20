@@ -20,6 +20,15 @@ namespace SiteSandBox
             bundles.Add(new ScriptBundle("~/bundles/Date").Include(
                         "~/Scripts/_Date.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/Console").Include(
+                        "~/Scripts/_Console.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/Behave").Include(
+                        "~/Scripts/behave.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/Prompt").Include(
+                        "~/Scripts/_Prompt.js"));
+
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                         "~/Scripts/jquery.unobtrusive*",
                         "~/Scripts/jquery.validate*"));
@@ -29,9 +38,8 @@ namespace SiteSandBox
             bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
                         "~/Scripts/modernizr-*"));
 
-            bundles.Add(new StyleBundle("~/Content/css").Include("~/Content/site.css"));
-
-            bundles.Add(new StyleBundle("~/Content/css").Include("~/Content/bootstrap.min.css"));
+            bundles.Add(new StyleBundle("~/Content/css").Include("~/Content/bootstrap.min.css",
+                                                                "~/Content/Prompt.css"));
 
             bundles.Add(new StyleBundle("~/Content/themes/base/css").Include(
                         "~/Content/themes/base/jquery.ui.core.css",

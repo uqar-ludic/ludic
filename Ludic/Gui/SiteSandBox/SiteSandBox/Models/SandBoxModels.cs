@@ -30,7 +30,6 @@ namespace SiteSandBox.Models
         public string Description { get; set; }
         public string Sujet { get; set; }
         public string OutExpeted { get; set; }
-        public string OutRecieved { get; set; }
         public int Value { get; set; }
         public int ThemeId { get; set; }
         public virtual Theme Theme { get; set; }
@@ -76,7 +75,8 @@ namespace SiteSandBox.Models
     public class Save
     {
         public int SaveId { get; set; }
-        public string Solution { get; set; }
+        public string Code { get; set; }
+        public string OutRecieved { get; set; }
         public int ExerciceId { get; set; }
         public virtual Exercice Exercice { get; set; }
     }

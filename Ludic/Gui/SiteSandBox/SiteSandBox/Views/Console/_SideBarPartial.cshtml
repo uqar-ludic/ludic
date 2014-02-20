@@ -1,12 +1,12 @@
-﻿@model SiteSandBox.Models.ExerciceModel
-@using (Html.BeginForm("Edit", "Console", FormMethod.Post, new { id = "ConsoleForm" }))
-{
-    @Html.AntiForgeryToken()
-    @Html.ValidationSummary()
-    <div>
-        <ul class="nav nav-list">
-            <li><a href="@Url.Action("Index", "Home")"><i class="glyphicon glyphicon-home"></i> Home </a></li>
-            <li><a href="javascript:document.getElementById('ConsoleForm').submit()"><i class="glyphicon glyphicon-floppy-disk"></i> Compile </a></li>
-        </ul>
-    </div>
-}
+﻿@model SiteSandBox.Models.ExerciceConsole
+<div>
+    <ul class="nav nav-list">
+        <li><a href="@Url.Action("Index", "Home")"><i class="glyphicon glyphicon-home"></i> Home </a></li>
+        <li>
+            <a href="javascript:ConsoleFormCompile()"><i class="glyphicon glyphicon-floppy-saved"></i> Compile </a>
+        </li>
+        <li>
+            <a href="javascript:ConsoleFormSave()"><i class="glyphicon glyphicon-floppy-save"></i> Sauver </a>
+        </li>
+    </ul>
+</div>

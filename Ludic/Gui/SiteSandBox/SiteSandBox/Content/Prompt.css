@@ -1,0 +1,33 @@
+﻿textarea.Console{
+			/* The following three rules make a difference in the script */
+			overflow:hidden;
+			line-height: 13px;
+			font-size: 13px;
+			border:1px;
+			padding:10px;
+			font-family: monospace;
+			outline:none;
+            border-top-right-radius: 15px;
+            border-bottom-right-radius: 15px;
+            background: #333333;
+            color: white;
+            resize:vertical;
+            height: 250px;
+}
+
+.line-nums{
+    width:30px;
+    height: 250px;
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+	font-size:13px;
+	line-height:13px;
+	padding:12px 15px 0px 0px;
+	font-family: monospace;
+	background: #999;
+	width: 50px;
+	text-align:right;
+    margin-right: -10px;
+    margin-left: 15px;
+    margin-bottom: 10px;
+	}
