@@ -41,7 +41,7 @@ namespace SiteSandBox.Controllers
             if (ModelState.IsValid && WebSecurity.Login(model.UserName, model.Password, persistCookie: model.RememberMe))
             {
                 int id = getUserId(model.UserName);
-                db.Historiques.FirstOrDefault(u => u.UserId == id).lastLogin = DateTime.Now;
+                //db.Historiques.FirstOrDefault(u => u.UserId == id).lastLogin = DateTime.Now;
                 db.SaveChanges();
                 return RedirectToLocal(returnUrl);
             }
@@ -96,13 +96,13 @@ namespace SiteSandBox.Controllers
                     
                     if (WebSecurity.Login(model.UserName, model.Password))
                     {
-                        Historique h = db.Historiques.Create();
-                        h.UserId = WebSecurity.GetUserId(model.UserName);
-                        h.lastLogin = DateTime.Now;
-                        h.LastExerciceId = -1;
-                        db.Historiques.Add(h);
+                        //Historique h = db.Historiques.Create();
+                        //h.UserId = WebSecurity.GetUserId(model.UserName);
+                        //h.lastLogin = DateTime.Now;
+                        //h.LastExerciceId = -1;
+                        //db.Historiques.Add(h);
                         db.SaveChanges();
-                        ViewBag.Test = db.Historiques.Count().ToString();
+                        //ViewBag.Test = db.Historiques.Count().ToString();
                     }
                     return RedirectToAction("Index", "Home");
                 }

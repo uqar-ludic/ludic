@@ -27,7 +27,7 @@ namespace RemotingInterface
          [Serializable]
          public class InformationsUtil
          {
-             public string Nomutil;   // nom d'utilisateur 
+             public string Nomutil;      // nom d'utilisateur 
              public DateTime dateSoumi; // date de soumission de l'exercie
              public string Exercise;    // numero d'exercice
 

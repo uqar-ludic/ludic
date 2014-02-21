@@ -15,12 +15,7 @@ namespace SiteSandBox.Controllers
         [AllowAnonymous]
         public ActionResult Index()
         {
-            //if (User.Identity.IsAuthenticated && !WebSecurity.Initialized)
-            //{
-            //    WebSecurity.InitializeDatabaseConnection("DefaultConnection", "UserProfile", "UserId", "UserName", autoCreateTables: true);
-            //    WebSecurity.Logout();
-            //}
-            ViewBag.Message = User.Identity.IsAuthenticated.ToString() + WebSecurity.Initialized;//"Bienvenu sur SandBox";
+            ViewBag.Message = "Bienvenu sur SandBox";
             return View();
         }
 

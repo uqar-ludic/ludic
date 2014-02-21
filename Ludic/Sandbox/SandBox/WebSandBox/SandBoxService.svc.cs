@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using SandBox;
+//using SandBox;
 using System.Runtime.Serialization;
 using System.Security;
 using System.ServiceModel;
@@ -13,11 +13,11 @@ namespace WebSandBox
     // REMARQUE : pour lancer le client test WCF afin de tester ce service, sélectionnez SandBoxService.svc ou SandBoxService.svc.cs dans l'Explorateur de solutions et démarrez le débogage.
     public class SandBoxService : ISandBoxService
     {
-        string ExecuteCode(string Permissions, string path)
+       public string ExecuteCode(string Permissions, string path)
         {
-            SandBox.SandBox sb = new SandBox.SandBox();
-            
-            return sb.ExcuteCode(sb.CreatePermission(Permissions), path);
+           // SandBox.SandBox sb = new SandBox.SandBox();
+           //// return sb.ExcuteCode(sb.CreatePermission(Permissions, path), path);
+            return "";
         }
     }
 }

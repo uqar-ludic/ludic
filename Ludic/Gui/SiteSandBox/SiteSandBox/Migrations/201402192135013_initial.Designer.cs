@@ -11,7 +11,7 @@ namespace SiteSandBox.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201401210750277_initial"; }
+            get { return "201402192135013_initial"; }
         }
         
         string IMigrationMetadata.Source

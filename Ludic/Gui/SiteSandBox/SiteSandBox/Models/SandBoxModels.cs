@@ -10,13 +10,13 @@ namespace SiteSandBox.Models
 {
     public class SandBoxContext : DbContext
     {
-
-        public DbSet<Theme> Themes { get; set; }
-        public DbSet<Exercice> Exercices { get; set; }
         public DbSet<UserProfile> UserProfile { get; set; }
-        public DbSet<Commentaire> Commentaires { get; set; }
-        public DbSet<Historique>  Historiques{ get; set; }
-        public DbSet<Save> Saves { get; set; }
+        
+        //public DbSet<Theme> Themes { get; set; }
+        //public DbSet<Exercice> Exercices { get; set; }
+        //public DbSet<Commentaire> Commentaires { get; set; }
+        //public DbSet<Historique>  Historiques{ get; set; }
+        //public DbSet<Save> Saves { get; set; }
     }
 
     public class Exercice
@@ -29,6 +29,7 @@ namespace SiteSandBox.Models
         public string Name { get; set; }
         public string Description { get; set; }
         public string Sujet { get; set; }
+        public string OutExpeted { get; set; }
         public int Value { get; set; }
         public int ThemeId { get; set; }
         public virtual Theme Theme { get; set; }
@@ -74,8 +75,9 @@ namespace SiteSandBox.Models
     public class Save
     {
         public int SaveId { get; set; }
-        public string Solution { get; set; }
-        public int ExerceId { get; set; }
+        public string Code { get; set; }
+        public string OutRecieved { get; set; }
+        public int ExerciceId { get; set; }
         public virtual Exercice Exercice { get; set; }
     }
 }
