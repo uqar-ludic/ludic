@@ -8,9 +8,6 @@ using System.IO;
 using System.Security;
 using System.Security.Policy;
 using System.Security.Permissions;
-using System.Runtime.Remoting;
-using System.Runtime.Remoting.Channels;
-using System.Runtime.Remoting.Channels.Http;
 using System.Diagnostics;
 using System.Reflection;
 
@@ -31,6 +28,7 @@ namespace SandBox
 
         // Voir si nécéssaire de faire un suivi des demandes d"exécution à partir d'ici ou pas ?
 
+        #region Creation des permission (IPermission) à ajouter au PermissionSet
         // Creation de permissions, on y ajoute chaque ligne du fichier de permissions dans une liste avec laquelle on produit le dictionnaire des permissions.
         // NB: le fichier de permissions doit avoir au minimum le droit d'execution. chaque ligne reprèsente soit : write, read, execute ...
 
@@ -41,8 +39,6 @@ namespace SandBox
             return PreparePermission(tempPerm, executablePath);
         }
 
-
-        #region Creation des permission (IPermission) à ajouter au PermissionSet
 
         private Dictionary<string, IPermission> PreparePermission(List<string> DemandPermissions, string PathExecutable)
         {
@@ -58,13 +54,12 @@ namespace SandBox
                     {
                         case "WRITE":
 
-                             //Permissions d'execution : 
-                            
-                            Permissions.Add("WExecute", new SecurityPermission(SecurityPermissionFlag.Execution));
-                            Permissions.Add("WUI", new UIPermission(PermissionState.Unrestricted));
-                            Permissions.Add("WRead", new FileIOPermission(FileIOPermissionAccess.Read, PathExecutable));
-                            Permissions.Add("WDiscover", new FileIOPermission(FileIOPermissionAccess.PathDiscovery, PathExecutable));
-                            // Permissions le ficheir de résultats :
+                            ////Permissions d'execution : 
+                            Permissions.Add("W-Execute", new SecurityPermission(SecurityPermissionFlag.Execution));
+                            Permissions.Add("W-UI", new UIPermission(PermissionState.Unrestricted));
+                            Permissions.Add("W-Read", new FileIOPermission(FileIOPermissionAccess.Read, PathExecutable));
+                            Permissions.Add("W-Discover", new FileIOPermission(FileIOPermissionAccess.PathDiscovery, PathExecutable));
+                            //// Permissions pour le fichier de résultats :
                             Permissions.Add("ERRead", new FileIOPermission(FileIOPermissionAccess.Read, PathExecutable + ".Result.txt"));
                             Permissions.Add("WRDiscover", new FileIOPermission(FileIOPermissionAccess.PathDiscovery, PathExecutable + ".Result.txt"));
                             Permissions.Add("WEcrireDansUnFchier", new FileIOPermission(FileIOPermissionAccess.Write, PathExecutable + ".Result.txt"));
@@ -73,56 +68,62 @@ namespace SandBox
                             break;
                         case "READ":
 
-                            // Permissions d'execution : 
-                            Permissions.Add("RExecute", new SecurityPermission(SecurityPermissionFlag.Execution));
-                            Permissions.Add("RUI", new UIPermission(PermissionState.Unrestricted));
-                            Permissions.Add("RRead", new FileIOPermission(FileIOPermissionAccess.Read, PathExecutable));
-                            Permissions.Add("RDiscover", new FileIOPermission(FileIOPermissionAccess.PathDiscovery, PathExecutable));
-                            // Permissions sur le ficheir de résultats :
+                            //// Permissions d'execution : 
+                            Permissions.Add("R-Execute", new SecurityPermission(SecurityPermissionFlag.Execution));
+                            Permissions.Add("R-UI", new UIPermission(PermissionState.Unrestricted));
+                            Permissions.Add("R-Read", new FileIOPermission(FileIOPermissionAccess.Read, PathExecutable));
+                            Permissions.Add("R-Discover", new FileIOPermission(FileIOPermissionAccess.PathDiscovery, PathExecutable));
+                            //// Permissions sur le fichier des résultats :
                             Permissions.Add("ERRead", new FileIOPermission(FileIOPermissionAccess.Read, PathExecutable + ".Result.txt"));
                             Permissions.Add("WRDiscover", new FileIOPermission(FileIOPermissionAccess.PathDiscovery, PathExecutable + ".Result.txt"));
                             Permissions.Add("WEcrireDansUnFchier", new FileIOPermission(FileIOPermissionAccess.Write, PathExecutable + ".Result.txt"));
                             Permissions.Add("WUnmanagedCode", new SecurityPermission(SecurityPermissionFlag.UnmanagedCode));
 
-                            //new FileIOPermission(FileIOPermissionAccess.PathDiscovery, PathExecutable);
                             break;
                         case "EXECUTE":
-                            // Permissions d'execution : 
-                            Permissions.Add("Execute", new SecurityPermission(SecurityPermissionFlag.Execution));
-                            Permissions.Add("RUI", new UIPermission(PermissionState.Unrestricted));
-                            Permissions.Add("ERead", new FileIOPermission(FileIOPermissionAccess.Read, PathExecutable));
-                            Permissions.Add("EDiscover", new FileIOPermission(FileIOPermissionAccess.PathDiscovery, PathExecutable));
-                            // Permissions sur le ficheir de résultats :
+                            //// Permissions d'execution : 
+                            Permissions.Add("E-Execute", new SecurityPermission(SecurityPermissionFlag.Execution));
+                            Permissions.Add("E-UI", new UIPermission(PermissionState.Unrestricted));
+                            Permissions.Add("E-Read", new FileIOPermission(FileIOPermissionAccess.Read, PathExecutable));
+                            Permissions.Add("E-Discover", new FileIOPermission(FileIOPermissionAccess.PathDiscovery, PathExecutable));
+                            //// Permissions sur le ficheir de résultats :
                             Permissions.Add("ERRead", new FileIOPermission(FileIOPermissionAccess.Read, PathExecutable + ".Result.txt"));
                             Permissions.Add("RRDiscover", new FileIOPermission(FileIOPermissionAccess.PathDiscovery, PathExecutable + ".Result.txt"));
                             Permissions.Add("WEcrireDansUnFchier", new FileIOPermission(FileIOPermissionAccess.Write, PathExecutable + ".Result.txt"));
                             Permissions.Add("EXWUnmanagedCode", new SecurityPermission(SecurityPermissionFlag.UnmanagedCode));
                             break;
                         case "CREATEFILE":
-                            // Permissions d'execution : 
-                            Permissions.Add("Create", new SecurityPermission(SecurityPermissionFlag.Execution));
-                            Permissions.Add("CUI", new UIPermission(PermissionState.Unrestricted));
-                            Permissions.Add("CRead", new FileIOPermission(FileIOPermissionAccess.Read, PathExecutable));
-                            Permissions.Add("CDiscover", new FileIOPermission(FileIOPermissionAccess.PathDiscovery, PathExecutable));
-                            // Permissions creation de fichier et fichier de resultat:
-                            Permissions.Add("RRead", new FileIOPermission(FileIOPermissionAccess.Read, PathExecutable + ".Result.txt"));
-                            Permissions.Add("CRERDiscover", new FileIOPermission(FileIOPermissionAccess.PathDiscovery, PathExecutable + ".Result.txt"));
-                            Permissions.Add("WEcrireDansUnFchier", new FileIOPermission(FileIOPermissionAccess.Write, PathExecutable + ".Result.txt"));
-                            Permissions.Add("CREWUnmanagedCode", new SecurityPermission(SecurityPermissionFlag.UnmanagedCode));
-                            //Permissions.Add("Createfile", new FileIOPermission(FileIOPermissionAccess.Read, "C:\\HomeSandBox"));
-
+                            //// créer un fichier
                             FileIOPermission f2 = new FileIOPermission(FileIOPermissionAccess.Read, @"C:\HomeSandBox");
                             f2.AddPathList(FileIOPermissionAccess.Write | FileIOPermissionAccess.Read, @"C:\HomeSandBox");
                             Permissions.Add("CreateFile", f2);
                             break;
+                        case "CREATEFILEWRITE":
 
+                            ////Permissions d'execution : 
+                            Permissions.Add("CW-Execute", new SecurityPermission(SecurityPermissionFlag.Execution));
+                            Permissions.Add("CW-UI", new UIPermission(PermissionState.Unrestricted));
+                            Permissions.Add("CW-Read", new FileIOPermission(FileIOPermissionAccess.Read, PathExecutable));
+                            Permissions.Add("CW-Discover", new FileIOPermission(FileIOPermissionAccess.PathDiscovery, PathExecutable));
+                            //// Permissions pour le fichier de résultats :
+                            Permissions.Add("CW-RRead", new FileIOPermission(FileIOPermissionAccess.Read, PathExecutable + ".Result.txt"));
+                            Permissions.Add("CW-RDiscover", new FileIOPermission(FileIOPermissionAccess.PathDiscovery, PathExecutable + ".Result.txt"));
+                            Permissions.Add("CW-EcrireDansUnFchier", new FileIOPermission(FileIOPermissionAccess.Write, PathExecutable + ".Result.txt"));
+                            Permissions.Add("CW-UnmanagedCode", new SecurityPermission(SecurityPermissionFlag.UnmanagedCode));
+                            //// Créer un fichier 
+                            FileIOPermission file = new FileIOPermission(FileIOPermissionAccess.Read, @"C:\HomeSandBox");
+                            file.AddPathList(FileIOPermissionAccess.Write | FileIOPermissionAccess.Read, @"C:\HomeSandBox");
+                            Permissions.Add("CreateFile", file);
+                            break;
                         default:
-                            //Permissions.Add("Execute", new SecurityPermission(SecurityPermissionFlag.Execution)); 
+
+                            Permissions.Add("D-Execute", new SecurityPermission(SecurityPermissionFlag.Execution));
+                            Permissions.Add("D-UI", new UIPermission(PermissionState.Unrestricted));
+                            Permissions.Add("D-Read", new FileIOPermission(FileIOPermissionAccess.Read, PathExecutable));
+                            Permissions.Add("D-Discover", new FileIOPermission(FileIOPermissionAccess.PathDiscovery, PathExecutable));
                             break;
                     }
                 }
-
-                //return Permissions;
             }
             catch (SecurityException e)
             {
@@ -150,7 +151,7 @@ namespace SandBox
 
         public static int ExecuteCode(Dictionary<string, IPermission> ListPersmissions, string Path)
         {
-           
+
             PermissionSet permSet = new PermissionSet(PermissionState.None);
 
             foreach (KeyValuePair<string, IPermission> pair in ListPersmissions)
@@ -158,38 +159,26 @@ namespace SandBox
                 IPermission Permi = pair.Value;
                 permSet.AddPermission(Permi);
             }
-           
-           return ExecuteDomain(permSet, Path, UntrustedCodeFolderAbsolutePath);
-            // le retour en string est pour le suivi ! 
-           
+
+            return ExecuteDomain(permSet, Path, UntrustedCodeFolderAbsolutePath);
+
         }
 
-        // Execution du sandbox dans un nouveau domain avec les permissions recue.
+        // Execution du sandbox dans un nouveau domain avec les permissions recues.
 
         private static int ExecuteDomain(PermissionSet permSet, string executableToTest, string UntrustedCodeFolderAbsolutePath)
         {
 
-            //TextWriter originalConsoleOutput = Console.Out;
-            //StringWriter writer = new StringWriter();
-            //Console.SetOut(writer);
-
             AppDomainSetup adSetup = new AppDomainSetup();
-
             adSetup.ApplicationBase = Path.GetFullPath(UntrustedCodeFolderAbsolutePath);
-
-
+            
             StrongName fullTrustAssembly = typeof(SandBox).Assembly.Evidence.GetHostEvidence<StrongName>();
             AppDomain newDomain = AppDomain.CreateDomain("Sandbox", null, adSetup, permSet, fullTrustAssembly);
             try
             {
-                
-                //byte[] bytes = File.ReadAllBytes(executableToTest);
-                //Assembly assembly = Assembly.Load(bytes);
-                //MethodInfo main = assembly.EntryPoint;
-                //main.Invoke(null, new object[] { null });
 
-                return  newDomain.ExecuteAssembly(executableToTest);
-                
+                return newDomain.ExecuteAssembly(executableToTest);
+
             }
             catch (Exception ex)
             {
@@ -202,10 +191,8 @@ namespace SandBox
             {
 
                 AppDomain.Unload(newDomain);
-                //Console.SetOut(originalConsoleOutput);
-                //string result = writer.ToString();
-            }
 
+            }
 
         }
         #endregion
