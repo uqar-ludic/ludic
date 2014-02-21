@@ -1,7 +1,6 @@
 ﻿function ConsoleFormSave() {
     document.getElementById('ActionConsole').value = 1;
     document.getElementById('ConsoleForm').submit();
-    
 }
 
 function ConsoleFormCompile() {
@@ -13,3 +12,9 @@ function ConsoleFormComment() {
     document.getElementById('ActionConsole').value = 3;
     document.getElementById('ConsoleForm').submit();
 }
+
+function test(star)
+{
+    document.getElementById('rating').value = star.value;
+}
+

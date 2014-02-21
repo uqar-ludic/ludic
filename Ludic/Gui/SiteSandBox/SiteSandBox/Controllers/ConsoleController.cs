@@ -16,9 +16,30 @@ namespace SiteSandBox.Controllers
 
         public ActionResult Edit(int id = 0)
         {
+            System.Globalization.CultureInfo customCulture = (System.Globalization.CultureInfo)System.Threading.Thread.CurrentThread.CurrentCulture.Clone();
+            customCulture.NumberFormat.NumberDecimalSeparator = ".";
+            System.Threading.Thread.CurrentThread.CurrentCulture = customCulture;
             ExerciceConsole em = new ExerciceConsole();
-            em.IdExercice = id;
+            if (id == 0)
+                em = init();
             return View(em);
+        }
+
+        private ExerciceConsole init()
+        {
+            ExerciceConsole em = new ExerciceConsole();
+            em.IdExercice = 0;
+            em.Value = 5;
+            em.Subject = "SALUT LA COMPAGNIE";
+            em.Success.Add(new SuccessConsole(1, SuccessConsole.Difficulty.EASY, "test1", "succes n°1", true));
+            em.Success.Add(new SuccessConsole(2, SuccessConsole.Difficulty.EASY, "test2", "succes n°2", true));
+            em.Success.Add(new SuccessConsole(3, SuccessConsole.Difficulty.MEDIUM, "test3", "succes n°3"));
+            em.Success.Add(new SuccessConsole(4, SuccessConsole.Difficulty.HARD, "test4", "succes n°4"));
+            em.Errors.Add(new ErrorConsole(1, 125, "error on ..."));
+            em.Errors.Add(new ErrorConsole(2, 142, "error on ..."));
+            em.Errors.Add(new ErrorConsole(3, 840, "error on ..."));
+            em.Errors.Add(new ErrorConsole(4, 1985, "error on ..."));
+            return em;
         }
 
         [HttpPost]

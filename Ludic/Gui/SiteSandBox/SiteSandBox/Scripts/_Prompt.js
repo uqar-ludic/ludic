@@ -47,4 +47,8 @@
         autoIndent: true
     });
 
+    $('[data-toggle="tooltip Console"]').tooltip({
+        'placement': 'bottom',
+        'template': '<div class="tooltip" style="margin-left: -52px;margin-top: -15px;"><div class="tooltip-arrow"></div><div class="tooltip-inner" style="padding-top: 15px;border-top-left-radius:15px;border-top-right-radius:15px;"><div class="tooltip-content"><p></p></div></div></div>'
+    });
 };

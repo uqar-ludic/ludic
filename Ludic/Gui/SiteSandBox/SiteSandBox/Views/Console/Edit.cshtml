@@ -1,4 +1,5 @@
 ﻿@model SiteSandBox.Models.ExerciceConsole
+
 @using (Html.BeginForm("Edit", "Console", FormMethod.Post, new { id = "ConsoleForm" }))
 {
     @Html.AntiForgeryToken()
@@ -8,6 +9,7 @@
     @section SideBar {
         @Html.Partial("_SideBarPartial")
     }
+    
     <h2 style="margin-top:-15px;">Exercice n° <small style="color:#d2322d;">@Model.IdExercice</small></h2>
     <h3>Console : </h3>
     <div class="ConsoleContainer row">
@@ -28,11 +30,11 @@
             <div class="tab-pane wellEd active" id="sorties">
                 <h4>Sorties attendues</h4>
                 <div>
-                    @Html.TextAreaFor(model => model.OutSuccess, new { @class = "col-sm-12", @style = "height: 100px; background: #333333; color: white; border-radius: 15px; resize: vertical;" })
+                    @Html.TextAreaFor(model => model.OutSuccess, new { @id = "Console1", @class = "col-sm-12", @style = "height: 100px; background: #333333; color: white; border-radius: 15px; resize: vertical;" })
                 </div>
                 <h4>Sorties reçues</h4>
                 <div>
-                    @Html.TextAreaFor(model => model.OutCompil, new { @class = "col-sm-12", @style = "height: 100px; background: #333333; color: white; border-radius: 15px; resize: vertical;" })
+                    @Html.TextAreaFor(model => model.OutCompil, new { @id = "Console2", @class = "col-sm-12", @style = "height: 100px; background: #333333; color: white; border-radius: 15px; resize: vertical;" })
                 </div>
             </div>
             <div class="tab-pane wellEd" id="messages">
@@ -61,101 +63,58 @@
             </div>
             <div class="tab-pane wellEd" id="succés">
                 <h4>Progression :</h4>
-                    <div class="progress">
-                        @foreach (var item in Model.ProgressBar())
-	                    {
-                            if (item.Y > 10)
-                            {
-                                <div class="progress-bar" style="width: @(item.X - 0.5)%"><span class="sr-only">@(item.X - 0.5)% Complete</span></div>
-                                switch ((int)item.Y)
-                                {
-                                    case 11:
-                                        <div class="progress-bar progress-bar-success" style="width: 0.5%"><span class="sr-only">0.5% Complete</span></div>
-                                        break;
-                                    case 12:
-                                        <div class="progress-bar progress-bar-warning" style="width: 0.5%"><span class="sr-only">0.5% Complete</span></div>
-                                        break;
-                                    case 13:
-                                        <div class="progress-bar progress-bar-danger" style="width: 0.5%"><span class="sr-only">0.5% Complete</span></div>
-                                        break;
-                                }
-                            }
-                            else
-                            {
-                                <div class="progress-bar progress-bar-info" style="width: @(item.X - 0.5)%"><span class="sr-only">@(item.X - 0.5)% Complete</span></div>
-                                switch ((int)item.Y)
-                                {
-                                    case 1:
-                                        <div class="progress-bar progress-bar-success" style="width: 0.5%"><span class="sr-only">0.5% Complete</span></div>
-                                        break;
-                                    case 2:
-                                        <div class="progress-bar progress-bar-warning" style="width: 0.5%"><span class="sr-only">0.5% Complete</span></div>
-                                        break;
-                                    case 3:
-                                        <div class="progress-bar progress-bar-danger" style="width: 0.5%"><span class="sr-only">0.5% Complete</span></div>
-                                        break;
-                                }    
-                            }
-	                    }
-                    </div>
-                    <h4>Succés :</h4>
-                    <div class="accordion" id="accordionSuccess">
-                        @foreach (var item in Model.Success)
+                <div class="progress">
+                    @foreach (var item in Model.ProgressBar())
+                    {
+                        @*@Model.Success.SingleOrDefault(s => s.IdSucess == Model.ProgressBar().IndexOf(item)).Description*@
+                        if (item.Y > 10)
                         {
-                            <div class="accordion-group">
-                                <div class="accordion-heading">
-                                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionSuccess" href="#collapse@(item.Titre)">
-                                        @switch ((int)item.Diff)
-                                        {
-                                            case 1:
-                                                <span class="btn btn-success col-lg-12">
-                                                    @if (item.isCompleted)
-                                                    {
-                                                        <i class="glyphicon glyphicon-star">@item.Titre</i>
-                                                    }
-                                                    else
-                                                    {
-                                                        <i class="glyphicon glyphicon-star-empty">@item.Titre</i>
-                                                    }
-                                                </span>
-                                                break;
-                                            case 2:
-                                                <span class="btn btn-warning col-lg-12">
-                                                    @if (item.isCompleted)
-                                                    {
-                                                        <i class="glyphicon glyphicon-star">@item.Titre</i>
-                                                    }
-                                                    else
-                                                    {
-                                                        <i class="glyphicon glyphicon-star-empty">@item.Titre</i>
-                                                    }
-                                                </span>
-                                                break;
-                                            case 3:
-                                                <span class="btn btn-danger col-lg-12">
-                                                    @if (item.isCompleted)
-                                                    {
-                                                        <i class="glyphicon glyphicon-star">@item.Titre</i>
-                                                    }
-                                                    else
-                                                    {
-                                                        <i class="glyphicon glyphicon-star-empty">@item.Titre</i>
-                                                    }
-                                                </span>
-                                                break;
-                                        }
-                                    </a>
-                                </div>
-                                <div id="collapse@(item.Titre)" class="accordion-body collapse">
-                                    <div class="accordion-inner col-lg-12 wellEd">@item.Description</div>
-                                </div>
-                            </div>
+                            <div class="progress-bar" style="width: @(item.X - 1)%"><span class="sr-only">@(item.X - 1)% Complete</span></div>
+                            switch ((int)item.Y)
+                            {
+                                case 11:
+                                    <div class="progress-bar progress-bar-success" style="width: 1%"><a href="#" class="btn" data-toggle="tooltip Console" title="@item.Message">1% Complete</a></div>
+                                    break;
+                                case 12:
+                                <div class="progress-bar progress-bar-warning" style="width: 1%"><a href="#" class="btn" data-toggle="tooltip Console" title="@item.Message">1% Complete</a></div>
+                                    break;
+                                case 13:
+                                <div class="progress-bar progress-bar-danger" style="width: 1%"><a href="#" class="btn" data-toggle="tooltip Console" title="@item.Message">1% Complete</a></div>
+                                    break;
+                            }
                         }
-                    </div>
+                        else
+                        {
+                            <div class="progress-bar progress-bar-info" style="width: @(item.X - 1)%"><span class="sr-only">@(item.X - 1)% Complete</span></div>
+                            switch ((int)item.Y)
+                            {
+                                case 1:
+                                    <div class="progress-bar progress-bar-success" style="width: 1%"><a href="#" class="btn" data-toggle="tooltip Console" title="@item.Message">1% Complete</a></div>
+                                    break;
+                                case 2:
+                                <div class="progress-bar progress-bar-warning" style="width: 1%"><a href="#" class="btn" data-toggle="tooltip Console" title="@item.Message">1% Complete</a></div>
+                                    break;
+                                case 3:
+                                <div class="progress-bar progress-bar-danger" style="width: 1%"><a href="#" class="btn" data-toggle="tooltip Console" title="@item.Message">1% Complete</a></div>
+                                    break;
+                            }
+                        }
+                    }
                 </div>
+            </div>
             <div class="tab-pane wellEd" id="commentaires">
                 <h4>Note pour l'exercice n°@Model.IdExercice</h4>
-                <div id="stars" class="starrr"></div>
+                @Html.HiddenFor(model => model.Value, new { @id = "rating"})
+                <fieldset class="rating">
+                    @for (int i = 5; i > Model.Value; i--)
+                    {
+                        <input type="radio" id="star@(i)" name="rating" value="@(i)" onclick="javascript:test(this)"/><label for="star@(i)">@(i) stars</label>
+                    }
+                    @for (int i = Model.Value; i > 0 ; i--)
+                    {
+                        <input type="radio" id="star@(i)" name="rating" value="@(i)" onclick="javascript:test(this)" checked/><label for="star@(i)">@(i) stars</label>
+                    }
+                </fieldset>
                 Vous avez noté l'exercice sur <span id="count">@Model.Value</span> étoile(s)
                 <h4>Vote commentaire : </h4>
                 <div class="accordion" id="accordion3">
@@ -166,16 +125,16 @@
                             </a>
                         </div>
                         <div id="collapseComment" class="accordion-body collapse">
-                            <div class="accordion-inner col-lg-12 wellEd-orange">
-                                <div><label>Titre : </label> @Html.TextBoxFor(model => model.Posted.Title, new { @class = "form-control", @placeholder = "Titre...", @name = "titre"})</div>
-                                @Html.TextAreaFor(model => model.Posted.Comment, new { @class = "form-control", @rows = "5", @cols = "50", @style = "margin-top:10px;",  @name = "comment",  @placeholder = "Laisser votre commentaire..." })
+                            <div class="accordion-inner col-lg-12 wellEd-orange well-sm">
+                                <div>@Html.TextBoxFor(model => model.Posted.Title, new { @class = "form-control", @placeholder = "Titre...", @name = "titre"})</div>
+                                @Html.TextAreaFor(model => model.Posted.Comment, new { @class = "form-control", @rows = "5", @cols = "50", @style = "margin-top:10px;resize:none;",  @name = "comment",  @placeholder = "Laisser votre commentaire..." })
                                 <a href="javascript:ConsoleFormComment()" class="btn btn-success center-block" style="margin-top:10px;">Soumettre</a>
                             </div>
                         </div>
                     </div>
                 </div>
-                <h4>Commentaires : </h4>
-                <div class="">
+                <div style="margin-top: 10px;">
+                    <h4>Commentaires : </h4>
                     @foreach (var item in Model.Comments)
                     {
                         <div>
@@ -210,4 +169,5 @@
 @Scripts.Render("~/bundles/Console")
 @Scripts.Render("~/bundles/Behave")
 @Scripts.Render("~/bundles/Prompt")
+@Scripts.Render("~/bundles/Star")
 

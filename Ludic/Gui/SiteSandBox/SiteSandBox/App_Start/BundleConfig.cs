@@ -26,6 +26,9 @@ namespace SiteSandBox
             bundles.Add(new ScriptBundle("~/bundles/Behave").Include(
                         "~/Scripts/behave.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/Star").Include(
+                        "~/Scripts/_Star.js"));
+
             bundles.Add(new ScriptBundle("~/bundles/Prompt").Include(
                         "~/Scripts/_Prompt.js"));
 

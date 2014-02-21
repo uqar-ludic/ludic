@@ -34,17 +34,17 @@ namespace SiteSandBox.Models
         public List<ErrorConsole> Errors { get; set; }
         public List<SuccessConsole> Success { get; set; }
 
-        public List<PointF> ProgressBar()
+        public List<TooltipConsole> ProgressBar()
         {
-            List<PointF> progress = new List<PointF>();
+            List<TooltipConsole> progress = new List<TooltipConsole>();
             float ratio = (Success.Count != 0) ? 100 / Success.Count : 0;
             Console.WriteLine("ratio = " + ratio.ToString());
             foreach (SuccessConsole success in Success)
             {
                 if (success.isCompleted)
-                    progress.Add(new PointF(ratio, (float)(success.Diff + 10)));
+                    progress.Add(new TooltipConsole(ratio, (float)(success.Diff + 10), success.Description));
                 else
-                    progress.Add(new PointF(ratio, (float)success.Diff));
+                    progress.Add(new TooltipConsole(ratio, (float)success.Diff, success.Description));
 
             }
             return progress;
@@ -69,12 +69,31 @@ namespace SiteSandBox.Models
         {
         }
 
-        public SuccessConsole(int id, Difficulty difficulty, string titre, string description)
+        public SuccessConsole(int id, Difficulty difficulty, string titre, string description, bool isC = false)
         {
             IdSucess = id;
             Diff = difficulty;
             Titre = titre;
             Description = description;
+            isCompleted = isC;
+        }
+    }
+
+    public class TooltipConsole
+    {
+        public float X { get; set; }
+        public float Y { get; set; }
+        public string Message { get; set; }
+
+        public TooltipConsole()
+        {
+        }
+
+        public TooltipConsole(float x, float y, string message)
+        {
+            X = x;
+            Y = y;
+            Message = message;
         }
     }
 
@@ -114,4 +133,5 @@ namespace SiteSandBox.Models
             Message = message;
         }
     }
+
 }
