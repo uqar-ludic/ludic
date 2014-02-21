@@ -1,0 +1,4 @@
+C:\Users\Chaker\Documents\ludic\Ludic\Sandbox\SandBox\RemotingInterface\bin\Debug\RemotingInterface.dll
+C:\Users\Chaker\Documents\ludic\Ludic\Sandbox\SandBox\RemotingInterface\bin\Debug\RemotingInterface.pdb
+C:\Users\Chaker\Documents\ludic\Ludic\Sandbox\SandBox\RemotingInterface\obj\Debug\RemotingInterface.dll
+C:\Users\Chaker\Documents\ludic\Ludic\Sandbox\SandBox\RemotingInterface\obj\Debug\RemotingInterface.pdb

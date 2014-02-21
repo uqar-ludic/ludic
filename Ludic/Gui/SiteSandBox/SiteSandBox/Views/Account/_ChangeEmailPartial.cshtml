@@ -1,0 +1,15 @@
+﻿@model SiteSandBox.Models.LocalModel
+<h3>Modifier l'email</h3>
+
+@using (Html.BeginForm("Manage", "Account", FormMethod.Post, new { id = "ModifEmail" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary()
+    <div class="form-group">
+        <div class="input-group col-sm-8 col-sm-offset-1" id="EmailDiv">
+            <span class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span></span>
+            @Html.TextBoxFor(m => m.LocalEmail.Email, new { @type = "email", @class = "form-control", @placeholder = "Email", @Value = ViewBag.Email })
+        </div>
+        <a class="btn btn-primary col-sm-offset-1" href="javascript:document.getElementById('ModifEmail').submit()">Modifier l'email</a>
+    </div>
+}

@@ -13,7 +13,6 @@ namespace Redirect_projet_libre
     public class SolutionBuilder
     {
         #region Variables
-
         BasicFileLogger b;
 
         string sln_path_;
@@ -24,7 +23,6 @@ namespace Redirect_projet_libre
 
         List<string> compilResult = new List<string>();
         public List<object> objectToSend = new List<object>();
-
         #endregion
 
         public SolutionBuilder() { }
@@ -34,8 +32,8 @@ namespace Redirect_projet_libre
         static void Main(string[] args)
         {
             SolutionBuilder builder = new SolutionBuilder();
-            builder.compile(@"C:\Users\Antoine\Documents\Visual Studio 2012\Projects\Test_fail\Test_fail.sln",
-            @"C:\Users\Antoine\Documents\Visual Studio 2012\Projects\Test_fail\Test_fail\obj\Debug\Test_fail.csproj.FileListAbsolute.txt");
+            builder.compile(@"C:\Users\Quentin\Documents\Visual Studio 2013\Projects\AQGPI\AQGPI.sln",
+            @"C:\Users\Quentin\Documents\Visual Studio 2013\Projects\AQGPI\AQGPI\obj\Debug\AQGPI.csproj.FileListAbsolute.txt");
             //builder.compile(@"C:\Users\Antoine\Documents\Visual Studio 2012\Projects\Test_success\Test_success.sln",
             //@"C:\Users\Antoine\Documents\Visual Studio 2012\Projects\Test_success\Test_success\obj\Debug\Test_success.csproj.FileListAbsolute.txt");
 
@@ -52,11 +50,12 @@ namespace Redirect_projet_libre
             b = new BasicFileLogger();
             b.Parameters = logfile;
             b.register();
+            //Microsoft.Build.Evaluation.ProjectCollection.GlobalProjectCollection.
             Engine.GlobalEngine.BuildEnabled = true;
             Project p = new Project(Engine.GlobalEngine);
             p.BuildEnabled = true;
             p.Load(solution_name);
-            p.Build();
+            if (p.Build() == true) Console.WriteLine("SUCCESS"); else Console.Write("FAIL");
 
             output_ = b.getLogoutput();
 

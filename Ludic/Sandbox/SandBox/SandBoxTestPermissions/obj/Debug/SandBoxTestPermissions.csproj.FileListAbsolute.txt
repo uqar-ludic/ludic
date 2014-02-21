@@ -1,0 +1,11 @@
+C:\Users\Chaker\Documents\Visual Studio 2012\Projects\SandBox\SandBoxTestPermissions\bin\Debug\SandBoxTestPermissions.exe.config
+C:\Users\Chaker\Documents\Visual Studio 2012\Projects\SandBox\SandBoxTestPermissions\bin\Debug\SandBoxTestPermissions.exe
+C:\Users\Chaker\Documents\Visual Studio 2012\Projects\SandBox\SandBoxTestPermissions\bin\Debug\SandBoxTestPermissions.pdb
+C:\Users\Chaker\Documents\Visual Studio 2012\Projects\SandBox\SandBoxTestPermissions\obj\Debug\SandBoxTestPermissions.exe
+C:\Users\Chaker\Documents\Visual Studio 2012\Projects\SandBox\SandBoxTestPermissions\obj\Debug\SandBoxTestPermissions.pdb
+C:\Users\Chaker\Documents\ludic\Ludic\Sandbox\SandBox\SandBoxTestPermissions\bin\Debug\SandBoxTestPermissions.exe.config
+C:\Users\Chaker\Documents\ludic\Ludic\Sandbox\SandBox\SandBoxTestPermissions\bin\Debug\SandBoxTestPermissions.exe
+C:\Users\Chaker\Documents\ludic\Ludic\Sandbox\SandBox\SandBoxTestPermissions\bin\Debug\SandBoxTestPermissions.pdb
+C:\Users\Chaker\Documents\ludic\Ludic\Sandbox\SandBox\SandBoxTestPermissions\obj\Debug\SandBoxTestPermissions.exe
+C:\Users\Chaker\Documents\ludic\Ludic\Sandbox\SandBox\SandBoxTestPermissions\obj\Debug\SandBoxTestPermissions.pdb
+C:\Users\Chaker\Documents\ludic\Ludic\Sandbox\SandBox\SandBoxTestPermissions\obj\Debug\SandBoxTestPermissions.csprojResolveAssemblyReference.cache

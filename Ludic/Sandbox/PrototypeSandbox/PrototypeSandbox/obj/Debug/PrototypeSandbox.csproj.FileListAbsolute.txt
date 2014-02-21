@@ -1,0 +1,15 @@
+C:\Users\Chaker\Documents\Visual Studio 2012\Projects\DiversTestsSandBoox\PrototypeSandbox\PrototypeSandbox\obj\Debug\PrototypeSandbox.Form1.resources
+C:\Users\Chaker\Documents\Visual Studio 2012\Projects\DiversTestsSandBoox\PrototypeSandbox\PrototypeSandbox\obj\Debug\PrototypeSandbox.Properties.Resources.resources
+C:\Users\Chaker\Documents\Visual Studio 2012\Projects\DiversTestsSandBoox\PrototypeSandbox\PrototypeSandbox\obj\Debug\PrototypeSandbox.csproj.GenerateResource.Cache
+C:\Users\Chaker\Documents\Visual Studio 2012\Projects\DiversTestsSandBoox\PrototypeSandbox\PrototypeSandbox\bin\Debug\PrototypeSandbox.exe.config
+C:\Users\Chaker\Documents\Visual Studio 2012\Projects\DiversTestsSandBoox\PrototypeSandbox\PrototypeSandbox\bin\Debug\PrototypeSandbox.exe
+C:\Users\Chaker\Documents\Visual Studio 2012\Projects\DiversTestsSandBoox\PrototypeSandbox\PrototypeSandbox\bin\Debug\PrototypeSandbox.pdb
+C:\Users\Chaker\Documents\Visual Studio 2012\Projects\DiversTestsSandBoox\PrototypeSandbox\PrototypeSandbox\bin\Debug\SandBoxTestPermissions.exe
+C:\Users\Chaker\Documents\Visual Studio 2012\Projects\DiversTestsSandBoox\PrototypeSandbox\PrototypeSandbox\bin\Debug\SandBoxTestPermissions.pdb
+C:\Users\Chaker\Documents\Visual Studio 2012\Projects\DiversTestsSandBoox\PrototypeSandbox\PrototypeSandbox\obj\Debug\PrototypeSandbox.csprojResolveAssemblyReference.cache
+C:\Users\Chaker\Documents\Visual Studio 2012\Projects\DiversTestsSandBoox\PrototypeSandbox\PrototypeSandbox\obj\Debug\PrototypeSandbox.exe
+C:\Users\Chaker\Documents\Visual Studio 2012\Projects\DiversTestsSandBoox\PrototypeSandbox\PrototypeSandbox\obj\Debug\PrototypeSandbox.pdb
+C:\Users\Chaker\Documents\ludic\Ludic\Sandbox\PrototypeSandbox\PrototypeSandbox\obj\Debug\PrototypeSandbox.csprojResolveAssemblyReference.cache
+C:\Users\Chaker\Documents\ludic\Ludic\Sandbox\PrototypeSandbox\PrototypeSandbox\obj\Debug\PrototypeSandbox.Form1.resources
+C:\Users\Chaker\Documents\ludic\Ludic\Sandbox\PrototypeSandbox\PrototypeSandbox\obj\Debug\PrototypeSandbox.Properties.Resources.resources
+C:\Users\Chaker\Documents\ludic\Ludic\Sandbox\PrototypeSandbox\PrototypeSandbox\obj\Debug\PrototypeSandbox.csproj.GenerateResource.Cache
