@@ -23,9 +23,10 @@ namespace SandBox
 
     public class SandBox : MarshalByRefObject
     {
-        public static string UntrustedCodeFolderAbsolutePath = @"C:\HomeSandBox";
+        public static string UntrustedCodeFolderAbsolutePath = Properties.Settings.Default.FilePath;
         public Dictionary<string, IPermission> Permissions;
-
+        
+      
         // Voir si nécéssaire de faire un suivi des demandes d"exécution à partir d'ici ou pas ?
 
         #region Creation des permission (IPermission) à ajouter au PermissionSet
@@ -94,8 +95,8 @@ namespace SandBox
                             break;
                         case "CREATEFILE":
                             //// créer un fichier
-                            FileIOPermission f2 = new FileIOPermission(FileIOPermissionAccess.Read, @"C:\HomeSandBox");
-                            f2.AddPathList(FileIOPermissionAccess.Write | FileIOPermissionAccess.Read, @"C:\HomeSandBox");
+                            FileIOPermission f2 = new FileIOPermission(FileIOPermissionAccess.Read, UntrustedCodeFolderAbsolutePath);
+                            f2.AddPathList(FileIOPermissionAccess.Write | FileIOPermissionAccess.Read, UntrustedCodeFolderAbsolutePath);
                             Permissions.Add("CreateFile", f2);
                             break;
                         case "CREATEFILEWRITE":
@@ -111,8 +112,8 @@ namespace SandBox
                             Permissions.Add("CW-EcrireDansUnFchier", new FileIOPermission(FileIOPermissionAccess.Write, PathExecutable + ".Result.txt"));
                             Permissions.Add("CW-UnmanagedCode", new SecurityPermission(SecurityPermissionFlag.UnmanagedCode));
                             //// Créer un fichier 
-                            FileIOPermission file = new FileIOPermission(FileIOPermissionAccess.Read, @"C:\HomeSandBox");
-                            file.AddPathList(FileIOPermissionAccess.Write | FileIOPermissionAccess.Read, @"C:\HomeSandBox");
+                            FileIOPermission file = new FileIOPermission(FileIOPermissionAccess.Read, UntrustedCodeFolderAbsolutePath);
+                            file.AddPathList(FileIOPermissionAccess.Write | FileIOPermissionAccess.Read, UntrustedCodeFolderAbsolutePath);
                             Permissions.Add("CreateFile", file);
                             break;
                         default:
@@ -137,7 +138,7 @@ namespace SandBox
 
         #endregion
 
-
+        
         #region Execution du code
         // Initialise et ajout des permissions au PermissionSet du domain à crée.
 
