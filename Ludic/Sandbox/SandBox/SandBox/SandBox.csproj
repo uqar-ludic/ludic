@@ -64,10 +64,10 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="Properties\Settings.settings">
+    <Compile Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
-    </None>
+    </Compile>
     <None Include="sandbox.snk" />
   </ItemGroup>
   <ItemGroup>

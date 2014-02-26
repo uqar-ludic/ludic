@@ -20,6 +20,7 @@
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -29,6 +30,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -37,23 +39,22 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Data.Entity" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Web" />
-    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Web.Routing" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Configuration" />
@@ -114,6 +115,7 @@
       <Private>True</Private>
       <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.30506.0\lib\net40\System.Web.WebPages.Razor.dll</HintPath>
     </Reference>
+    <Reference Include="System.Xml.Linq" />
     <Reference Include="WebMatrix.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <Private>True</Private>
       <HintPath>..\packages\Microsoft.AspNet.WebPages.Data.2.0.30506.0\lib\net40\WebMatrix.Data.dll</HintPath>
@@ -182,26 +184,20 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\CommentaireController.cs" />
-    <Compile Include="Controllers\ExerciceController.cs" />
+    <Compile Include="Controllers\ConsoleController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\SaveController.cs" />
-    <Compile Include="Controllers\ThemeController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201401210750277_initial.cs" />
-    <Compile Include="Migrations\201401210750277_initial.Designer.cs">
-      <DependentUpon>201401210750277_initial.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201401212303554_suite.cs" />
-    <Compile Include="Migrations\201401212303554_suite.Designer.cs">
-      <DependentUpon>201401212303554_suite.cs</DependentUpon>
+    <Compile Include="Migrations\201402192135013_initial.cs" />
+    <Compile Include="Migrations\201402192135013_initial.Designer.cs">
+      <DependentUpon>201402192135013_initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountModels.cs" />
+    <Compile Include="Models\ConsoleModels.cs" />
     <Compile Include="Models\SandBoxModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -214,6 +210,7 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Prompt.css" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
@@ -275,6 +272,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <None Include="Scripts\jquery-1.9.1.intellisense.js" />
+    <Content Include="Scripts\behave.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jquery-1.9.1.js" />
@@ -292,7 +290,10 @@
     <Content Include="Scripts\knockout-2.2.0.debug.js" />
     <Content Include="Scripts\knockout-2.2.0.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\_Console.js" />
     <Content Include="Scripts\_Date.js" />
+    <Content Include="Scripts\_Prompt.js" />
+    <Content Include="Scripts\_Star.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -332,45 +333,23 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Web.config" />
-    <Content Include="Views\Commentaire\Index.cshtml" />
-    <Content Include="Views\Commentaire\Details.cshtml" />
-    <Content Include="Views\Commentaire\Create.cshtml" />
-    <Content Include="Views\Commentaire\Edit.cshtml" />
-    <Content Include="Views\Commentaire\Delete.cshtml" />
-    <Content Include="Views\Exercice\Index.cshtml" />
-    <Content Include="Views\Exercice\Details.cshtml" />
-    <Content Include="Views\Exercice\Create.cshtml" />
-    <Content Include="Views\Exercice\Edit.cshtml" />
-    <Content Include="Views\Exercice\Delete.cshtml" />
-    <Content Include="Views\Theme\Index.cshtml" />
-    <Content Include="Views\Theme\Details.cshtml" />
-    <Content Include="Views\Theme\Create.cshtml" />
-    <Content Include="Views\Theme\Edit.cshtml" />
-    <Content Include="Views\Theme\Delete.cshtml" />
     <Content Include="Views\Account\_ChangeEmailPartial.cshtml" />
+    <Content Include="Views\Home\_SideBarPartial.cshtml" />
+    <Content Include="Views\Account\_SideBarPartial.cshtml" />
     <Content Include="Views\User\Index.cshtml" />
     <Content Include="Views\User\Details.cshtml" />
     <Content Include="Views\User\Create.cshtml" />
     <Content Include="Views\User\Edit.cshtml" />
     <Content Include="Views\User\Delete.cshtml" />
-    <Content Include="Views\Save\Index.cshtml" />
-    <Content Include="Views\Save\Details.cshtml" />
-    <Content Include="Views\Save\Create.cshtml" />
-    <Content Include="Views\Save\Edit.cshtml" />
-    <Content Include="Views\Save\Delete.cshtml" />
-    <Content Include="Views\Home\_SideBarPartial.cshtml" />
-    <Content Include="Views\Account\_SideBarPartial.cshtml" />
-    <Content Include="Views\Exercice\_SideBarPartial.cshtml" />
+    <Content Include="Views\Console\Edit.cshtml" />
+    <Content Include="Views\Console\_SideBarPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201401210750277_initial.resx">
-      <DependentUpon>201401210750277_initial.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201401212303554_suite.resx">
-      <DependentUpon>201401212303554_suite.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201402192135013_initial.resx">
+      <DependentUpon>201402192135013_initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

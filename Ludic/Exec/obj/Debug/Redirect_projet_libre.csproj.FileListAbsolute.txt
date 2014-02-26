@@ -10,4 +10,3 @@ C:\Users\Noude\Documents\Projet_UQAR\Ludic\Exec\obj\Debug\Redirect_projet_libre.
 C:\Users\Noude\Documents\Projet_UQAR\Ludic\Exec\bin\Debug\Redirect_projet_libre.exe
 C:\Users\Noude\Documents\Projet_UQAR\Ludic\Exec\bin\Debug\Redirect_projet_libre.pdb
 C:\Users\Noude\Documents\Projet_UQAR\Ludic\Exec\obj\Debug\Redirect_projet_libre.csprojResolveAssemblyReference.cache
-C:\Users\Chaker\Documents\ludic\Ludic\Exec\bin\Debug\Redirect_projet_libre.exe.config
