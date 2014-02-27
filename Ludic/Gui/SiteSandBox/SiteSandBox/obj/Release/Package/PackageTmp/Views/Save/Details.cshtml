@@ -1,0 +1,29 @@
+﻿@model SiteSandBox.Models.Save
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>Save</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Solution)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Solution)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.ExerceId)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ExerceId)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.SaveId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

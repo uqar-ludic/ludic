@@ -1,0 +1,37 @@
+﻿@if (Request.IsAuthenticated)
+{
+    <text>
+        @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm" }))
+        {
+            @Html.AntiForgeryToken()
+            <ul class="nav navbar-nav" id="profil">
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"> <i class="glyphicon glyphicon-user"></i> @User.Identity.Name <b class="caret"></b></a>
+                    <ul class="dropdown-menu" id="dropProfilMaster">
+                        <li><a href="#">Mes exercices</a></li>
+                        <li class="divider"></li>
+                        <li><a href="#">Mon palmares</a></li>
+                        <li class="divider"></li>
+                        <li>@Html.ActionLink("Editer mon profil", "Manage", "Account", routeValues: null, htmlAttributes: new { id = "manageLink" })</li>
+                        <li class="divider"></li>
+                        <li><a href="javascript:document.getElementById('logoutForm').submit()">Se déconnecter</a>
+                    </ul>
+                </li>
+            </ul>
+        }
+    </text>
+}
+else
+{
+    <ul class="nav navbar-nav" id="registerOrLogin">
+        <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-user"></i> <b>S'incrire / Se connecter</b> <b class="caret"></b></a>
+            <ul class="dropdown-menu" id="dropProfilMaster">
+                <li>@Html.ActionLink("S'inscrire", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
+                <li class="divider"></li>
+                <li>@Html.ActionLink("Se connecter", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+            </ul>
+        </li>
+    </ul>
+
+}
