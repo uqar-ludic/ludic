@@ -42,7 +42,7 @@ namespace Compilation
                 string[] splitter = { "__________________________________________________" };
                 string loggerOutput = File.ReadAllText(logFilePath);
                 string[] projectResults = loggerOutput.Split(splitter, StringSplitOptions.None);
-                return projectResults;
+                //return projectResults;
                 foreach (string projectBuildDetails in projectResults)
                     if (projectBuildDetails.Contains("(default targets):"))
                         if (projectBuildDetails.Contains("Done building project \""))
