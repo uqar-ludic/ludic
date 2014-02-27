@@ -293,7 +293,6 @@
     <Content Include="Scripts\_Console.js" />
     <Content Include="Scripts\_Date.js" />
     <Content Include="Scripts\_Prompt.js" />
-    <Content Include="Scripts\_Star.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
