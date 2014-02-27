@@ -1,7 +1,0 @@
-C:\Users\Chaker\Documents\ludic\Ludic\Sandbox\SandBox\WebSandBox\bin\WebSandBox.dll
-C:\Users\Chaker\Documents\ludic\Ludic\Sandbox\SandBox\WebSandBox\bin\WebSandBox.pdb
-C:\Users\Chaker\Documents\ludic\Ludic\Sandbox\SandBox\WebSandBox\bin\SandBox.dll
-C:\Users\Chaker\Documents\ludic\Ludic\Sandbox\SandBox\WebSandBox\bin\SandBox.pdb
-C:\Users\Chaker\Documents\ludic\Ludic\Sandbox\SandBox\WebSandBox\obj\Debug\WebSandBox.csprojResolveAssemblyReference.cache
-C:\Users\Chaker\Documents\ludic\Ludic\Sandbox\SandBox\WebSandBox\obj\Debug\WebSandBox.dll
-C:\Users\Chaker\Documents\ludic\Ludic\Sandbox\SandBox\WebSandBox\obj\Debug\WebSandBox.pdb
