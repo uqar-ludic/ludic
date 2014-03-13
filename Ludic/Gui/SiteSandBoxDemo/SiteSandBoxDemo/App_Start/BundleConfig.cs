@@ -30,8 +30,20 @@ namespace SiteSandBoxDemo
             bundles.Add(new ScriptBundle("~/bundles/Behave").Include(
                         "~/Scripts/behave.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/Ace").Include(
+                        "~/Scripts/ace-builds-master/src-min-noconflict/ace.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/Ace-t").Include(
+                        "~/Scripts/ace-builds-master/src-min-noconflict/theme-twilight.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/Ace-cs").Include(
+                        "~/Scripts/ace-builds-master/src-min-noconflict/mode-csharp.js"));
+
             bundles.Add(new ScriptBundle("~/bundles/Prompt").Include(
                         "~/Scripts/_Prompt.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/JAce").Include(
+                        "~/Scripts/jquery-ace.min.js"));
 
             // Utilisez la version de développement de Modernizr pour développer et apprendre. Puis, lorsque vous êtes
             // prêt pour la production, utilisez l'outil de génération sur http://modernizr.com pour sélectionner uniquement les tests dont vous avez besoin.

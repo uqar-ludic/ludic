@@ -63,7 +63,7 @@ namespace SiteSandBox.Controllers
 
         private void Save(ExerciceConsole exercice)
         {
-
+            Console.WriteLine(exercice.Code);
         }
 
         private ExerciceConsole Comment(ExerciceConsole exercice)
