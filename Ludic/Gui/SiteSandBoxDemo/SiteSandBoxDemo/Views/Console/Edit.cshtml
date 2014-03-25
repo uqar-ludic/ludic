@@ -5,6 +5,7 @@
     @Html.AntiForgeryToken()
     @Html.ValidationSummary()
     @Html.HiddenFor(model => model.Action, new { @id = "ActionConsole"})
+    @Html.HiddenFor(model => model.Code, new { @id = "Console"})
     
     @section SideBar {
         @Html.Partial("_SideBarPartial")
@@ -12,10 +13,7 @@
     
     <h2 style="margin-top:-15px;">Exercice n° <small style="color:#d2322d;">@Model.IdExercice</small></h2>
     <h3>Console : </h3>
-    <div class="ConsoleContainer row">
-		<div class="line-nums col-sm-1" id="NumConsole"><span>1</span></div>
-        @Html.TextAreaFor(model => model.Code, new { @class = "col-sm-11 Console", @id = "Console" })
-    </div>
+    <div id="editor" class="ConsoleContainer row well" style="height:350px;">@Model.Code</div>
     <div id="tabEdition" class="btn-group full-width-tabs" data-toggle="buttons-radio">
         <ul class="nav nav-tabs">
             <li class="take-all-space-you-can active"><a href="#sorties" class="btn btn-block btn-success" data-toggle="tab">Sorties</a></li>
@@ -168,4 +166,5 @@
 }
 @Scripts.Render("~/bundles/Console")
 @Scripts.Render("~/bundles/Behave")
+
 @Scripts.Render("~/bundles/Prompt")
