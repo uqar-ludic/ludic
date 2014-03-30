@@ -146,6 +146,8 @@ namespace SandBox
         {
 
             PermissionSet permSet = new PermissionSet(PermissionState.None);
+            StreamWriter result = new StreamWriter(Path + ".result.txt");
+            Console.SetOut(result);
 
             foreach (KeyValuePair<string, IPermission> pair in ListPersmissions)
             {
@@ -153,7 +155,10 @@ namespace SandBox
                 permSet.AddPermission(Permi);
             }
 
-            return ExecuteDomain(permSet, Path, UntrustedCodeFolderAbsolutePath);
+               result.Flush();
+               result.Close();
+               ExecuteDomain(permSet, Path, UntrustedCodeFolderAbsolutePath);
+               return 0;// ExecuteDomain(permSet, Path, UntrustedCodeFolderAbsolutePath);
 
         }
 

@@ -21,3 +21,11 @@ C:\Users\Quentin\Source\Repos\ludic\Ludic\Web Service\SandBox\obj\Debug\Interop.
 C:\Users\Quentin\Source\Repos\ludic\Ludic\Web Service\SandBox\obj\Debug\SandBox.csproj.ResolveComReference.cache
 C:\Users\Quentin\Source\Repos\ludic\Ludic\Web Service\SandBox\obj\Debug\SandBox.dll
 C:\Users\Quentin\Source\Repos\ludic\Ludic\Web Service\SandBox\obj\Debug\SandBox.pdb
+C:\Repos\ludic\Ludic\Web Service\SandBox\bin\Debug\SandBox.dll.config
+C:\Repos\ludic\Ludic\Web Service\SandBox\bin\Debug\SandBox.dll
+C:\Repos\ludic\Ludic\Web Service\SandBox\bin\Debug\SandBox.pdb
+C:\Repos\ludic\Ludic\Web Service\SandBox\obj\Debug\SandBox.csprojResolveAssemblyReference.cache
+C:\Repos\ludic\Ludic\Web Service\SandBox\obj\Debug\Interop.WinHttp.dll
+C:\Repos\ludic\Ludic\Web Service\SandBox\obj\Debug\SandBox.csproj.ResolveComReference.cache
+C:\Repos\ludic\Ludic\Web Service\SandBox\obj\Debug\SandBox.dll
+C:\Repos\ludic\Ludic\Web Service\SandBox\obj\Debug\SandBox.pdb

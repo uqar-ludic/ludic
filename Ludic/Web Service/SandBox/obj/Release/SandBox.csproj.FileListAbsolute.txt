@@ -14,3 +14,11 @@ C:\Users\Quentin\Source\Repos\ludic\Ludic\Web Service\SandBox\obj\Release\Intero
 C:\Users\Quentin\Source\Repos\ludic\Ludic\Web Service\SandBox\obj\Release\SandBox.csproj.ResolveComReference.cache
 C:\Users\Quentin\Source\Repos\ludic\Ludic\Web Service\SandBox\obj\Release\SandBox.dll
 C:\Users\Quentin\Source\Repos\ludic\Ludic\Web Service\SandBox\obj\Release\SandBox.pdb
+C:\Repos\ludic\Ludic\Web Service\SandBox\bin\Release\SandBox.dll.config
+C:\Repos\ludic\Ludic\Web Service\SandBox\bin\Release\SandBox.dll
+C:\Repos\ludic\Ludic\Web Service\SandBox\bin\Release\SandBox.pdb
+C:\Repos\ludic\Ludic\Web Service\SandBox\obj\Release\SandBox.csprojResolveAssemblyReference.cache
+C:\Repos\ludic\Ludic\Web Service\SandBox\obj\Release\Interop.WinHttp.dll
+C:\Repos\ludic\Ludic\Web Service\SandBox\obj\Release\SandBox.csproj.ResolveComReference.cache
+C:\Repos\ludic\Ludic\Web Service\SandBox\obj\Release\SandBox.dll
+C:\Repos\ludic\Ludic\Web Service\SandBox\obj\Release\SandBox.pdb
