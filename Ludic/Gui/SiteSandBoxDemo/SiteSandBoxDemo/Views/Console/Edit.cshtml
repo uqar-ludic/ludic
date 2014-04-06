@@ -13,7 +13,7 @@
     
     <h2 style="margin-top:-15px;">Exercice n° <small style="color:#d2322d;">@Model.IdExercice</small></h2>
     <h3>Console : </h3>
-    <div id="editor" class="ConsoleContainer row well" style="height:350px;">@Model.Code</div>
+    <div id="editor" class="ConsoleContainer" style="height:350px;">@Model.Code</div>
     <div id="tabEdition" class="btn-group full-width-tabs" data-toggle="buttons-radio">
         <ul class="nav nav-tabs">
             <li class="take-all-space-you-can active"><a href="#sorties" class="btn btn-block btn-success" data-toggle="tab">Sorties</a></li>
@@ -26,14 +26,10 @@
     <div>
         <div class="tab-content" style="border-bottom-left-radius:2px;border-bottom-right-radius:2px;">
             <div class="tab-pane wellEd active" id="sorties">
-                <h4>Sorties attendues</h4>
-                <div>
-                    @Html.TextAreaFor(model => model.OutSuccess, new { @id = "Console1", @class = "col-sm-12", @style = "height: 100px; background: #333333; color: white; border-radius: 15px; resize: vertical;" })
-                </div>
-                <h4>Sorties reçues</h4>
-                <div>
-                    @Html.TextAreaFor(model => model.OutCompil, new { @id = "Console2", @class = "col-sm-12", @style = "height: 100px; background: #333333; color: white; border-radius: 15px; resize: vertical;" })
-                </div>
+                <h4>Sorties compilation</h4>
+                <div id="compil" class="ConsoleContainer" style="height:250px;">@Model.OutCompil</div>
+                <h4>Sorties programme</h4>
+                <div id="success" class="ConsoleContainer" style="height:250px;">@Model.OutSuccess</div>
             </div>
             <div class="tab-pane wellEd" id="messages">
                 <table class="table table-striped">
@@ -103,16 +99,6 @@
             <div class="tab-pane wellEd" id="commentaires">
                 <h4>Note pour l'exercice n°@Model.IdExercice</h4>
                 @Html.HiddenFor(model => model.Value, new { @id = "rating"})
-                <fieldset class="rating">
-                    @for (int i = 5; i > Model.Value; i--)
-                    {
-                        <input type="radio" id="star@(i)" name="rating" value="@(i)" onclick="javascript:test(this)"/><label for="star@(i)">@(i) stars</label>
-                    }
-                    @for (int i = Model.Value; i > 0 ; i--)
-                    {
-                        <input type="radio" id="star@(i)" name="rating" value="@(i)" onclick="javascript:test(this)" checked/><label for="star@(i)">@(i) stars</label>
-                    }
-                </fieldset>
                 Vous avez noté l'exercice sur <span id="count">@Model.Value</span> étoile(s)
                 <h4>Vote commentaire : </h4>
                 <div class="accordion" id="accordion3">
@@ -164,7 +150,7 @@
         </div>
     </div>
 }
-@Scripts.Render("~/bundles/Console")
-@Scripts.Render("~/bundles/Behave")
 
+
+@Scripts.Render("~/bundles/Console")
 @Scripts.Render("~/bundles/Prompt")

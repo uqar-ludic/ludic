@@ -30,6 +30,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <Prefer32Bit>false</Prefer32Bit>
+    <FilesToIncludeForPublish>AllFilesInTheProject</FilesToIncludeForPublish>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -43,6 +44,10 @@
   <ItemGroup>
     <Reference Include="Microsoft.CSharp">
       <Private>True</Private>
+    </Reference>
+    <Reference Include="SandBox, Version=1.0.0.0, Culture=neutral, PublicKeyToken=5dc08e2badac35bb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\SandBox\bin\Debug\SandBox.dll</HintPath>
     </Reference>
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Web.DynamicData">
@@ -105,10 +110,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\SandBox\SandBox.csproj">
-      <Project>{f88118ba-8709-450e-9d2e-fb0f545c72cc}</Project>
-      <Name>SandBox</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Test Compil\Compil.csproj">
       <Project>{fc687fc1-3428-4dfb-93d3-198375839073}</Project>
       <Name>Compil</Name>
@@ -127,7 +128,7 @@
         <WebProjectProperties>
           <UseIIS>True</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>0</DevelopmentServerPort>
+          <DevelopmentServerPort>61083</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>http://localhost:57884/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>

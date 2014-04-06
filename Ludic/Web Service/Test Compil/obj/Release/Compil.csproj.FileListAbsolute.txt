@@ -4,3 +4,9 @@ C:\Users\Quentin\Downloads\SandBox\SandBox\Test Compil\bin\Release\Compil.pdb
 C:\Users\Quentin\Downloads\SandBox\SandBox\Test Compil\obj\Release\Compil.csprojResolveAssemblyReference.cache
 C:\Users\Quentin\Downloads\SandBox\SandBox\Test Compil\obj\Release\Compil.dll
 C:\Users\Quentin\Downloads\SandBox\SandBox\Test Compil\obj\Release\Compil.pdb
+C:\Repos\ludic\Ludic\Web Service\Test Compil\bin\Release\Compil.dll.config
+C:\Repos\ludic\Ludic\Web Service\Test Compil\bin\Release\Compil.dll
+C:\Repos\ludic\Ludic\Web Service\Test Compil\bin\Release\Compil.pdb
+C:\Repos\ludic\Ludic\Web Service\Test Compil\obj\Release\Compil.csprojResolveAssemblyReference.cache
+C:\Repos\ludic\Ludic\Web Service\Test Compil\obj\Release\Compil.dll
+C:\Repos\ludic\Ludic\Web Service\Test Compil\obj\Release\Compil.pdb
