@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Text;
 using System.Threading;
 using System.Web;
 using System.Web.Services;
@@ -24,18 +25,17 @@ namespace SiteSandBoxDemo
         /// </summary>
         /// <param name="cheminPermissions"> Le chemin du fihier text des permissions.</param>
         /// <param name="cheminExecutable"> Le chemin de l'exécutable </param>
-        public static void DoWork(String cheminPermissions, String cheminExecutable)
+        private static void DoWork(String cheminPermissions, String cheminExecutable)
         {
             SandBox.SandBox sb = new SandBox.SandBox();
             SandBox.SandBox.ExecuteCode(sb.CreatePermission(cheminPermissions, cheminExecutable), cheminExecutable);
-
         }
 
         [WebMethod]
         public string CompilSln(string slnPath, string logPath)
         {
             Compil.Compil.ExecuteCompil(slnPath, logPath);
-            return File.ReadAllText(logPath);
+            return Encoding.UTF8.GetString(Encoding.Default.GetBytes(File.ReadAllText(logPath,Encoding.Default)));
         }
 
         [WebMethod]
@@ -56,10 +56,8 @@ namespace SiteSandBoxDemo
                 catch (Exception ex)
                 {
                     return String.Format("Exception caught:\n{0}", ex.ToString());
-
                 }
                 // Voir comment gérer s'il y'a plusieurs resultats du même exercice.
-
                 if (File.Exists(cheminExecutable + ".result.txt"))
                 {
                     String result = File.ReadAllText(cheminExecutable + ".result.txt");

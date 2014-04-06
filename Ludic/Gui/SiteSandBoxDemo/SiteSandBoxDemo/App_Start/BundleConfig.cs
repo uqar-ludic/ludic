@@ -27,8 +27,8 @@ namespace SiteSandBoxDemo
             bundles.Add(new ScriptBundle("~/bundles/Console").Include(
                         "~/Scripts/_Console.js"));
 
-            bundles.Add(new ScriptBundle("~/bundles/Behave").Include(
-                        "~/Scripts/behave.js"));
+            bundles.Add(new ScriptBundle("~/bundles/ace").Include(
+                        "~/Scripts/ace.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/Ace").Include(
                         "~/Scripts/ace-builds-master/src-min-noconflict/ace.js"));
