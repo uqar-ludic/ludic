@@ -2,7 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Web;
 using System.Web.Mvc;
 
@@ -21,8 +20,6 @@ namespace SiteSandBox.Controllers
             customCulture.NumberFormat.NumberDecimalSeparator = ".";
             System.Threading.Thread.CurrentThread.CurrentCulture = customCulture;
             ExerciceConsole em = new ExerciceConsole();
-            em.OutCompil = "";
-            em.OutSuccess = "";
             if (id == 0)
                 em = init();
             return View(em);
@@ -42,6 +39,7 @@ namespace SiteSandBox.Controllers
             em.Errors.Add(new ErrorConsole(2, 142, "error on ..."));
             em.Errors.Add(new ErrorConsole(3, 840, "error on ..."));
             em.Errors.Add(new ErrorConsole(4, 1985, "error on ..."));
+            em.Code = "function test(){}";
             return em;
         }
 
@@ -81,9 +79,7 @@ namespace SiteSandBox.Controllers
 
         private ExerciceConsole Compile(ExerciceConsole exercice)
         {
-            SiteSandBoxDemo.localhost.LudicWebService service = new SiteSandBoxDemo.localhost.LudicWebService();
-            exercice.OutCompil = service.CompilSln(@"C:\Temp\AQGPI\AQGPI\AQGPI.sln", @"C:\Logs\AQGPI.log.txt");
-            exercice.OutSuccess = System.Environment.NewLine + service.Execute(@"C:\Temp\AQGPI\AQGPI\AQGPI\bin\Debug\Perm.txt", @"C:\Temp\AQGPI\AQGPI\AQGPI\bin\Debug\AQGPI.exe");
+            exercice.OutCompil = "test2";
             return exercice;
         }
 
