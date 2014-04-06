@@ -10,6 +10,7 @@ using System.Security.Policy;
 using System.Security.Permissions;
 using System.Diagnostics;
 using System.Reflection;
+using System.Runtime.Remoting;
 
 namespace SandBox
 {
@@ -17,13 +18,8 @@ namespace SandBox
     {
         public static string UntrustedCodeFolderAbsolutePath = Properties.Settings.Default.FilePath;
         public Dictionary<string, IPermission> Permissions;
-        
-      
-        // Voir si nécéssaire de faire un suivi des demandes d"exécution à partir d'ici ou pas ?
 
         #region Creation des permission (IPermission) à ajouter au PermissionSet
-        // Creation de permissions, on y ajoute chaque ligne du fichier de permissions dans une liste avec laquelle on produit le dictionnaire des permissions.
-        // NB: le fichier de permissions doit avoir au minimum le droit d'execution. chaque ligne reprèsente soit : write, read, execute ...
 
         public Dictionary<string, IPermission> CreatePermission(string permissionPath, string executablePath)
         {
@@ -32,22 +28,16 @@ namespace SandBox
             return PreparePermission(tempPerm, executablePath);
         }
 
-
         private Dictionary<string, IPermission> PreparePermission(List<string> DemandPermissions, string PathExecutable)
         {
-            // On regarde les permissions demandées et on associe l'objet qui crée la permission 
             Dictionary<string, IPermission> Permissions = new Dictionary<string, IPermission>();
             try
             {
-
                 foreach (string item in DemandPermissions)
                 {
-
                     switch (item.ToUpper())
                     {
                         case "WRITE":
-
-                            ////Permissions d'execution : 
                             Permissions.Add("W-Execute", new SecurityPermission(SecurityPermissionFlag.Execution));
                             Permissions.Add("W-UI", new UIPermission(PermissionState.Unrestricted));
                             Permissions.Add("W-Read", new FileIOPermission(FileIOPermissionAccess.Read, PathExecutable));
@@ -123,24 +113,11 @@ namespace SandBox
                 throw (e);
                 // Console.WriteLine("Security Exception:\n\n{0}", e.Message); 
             }
-
             return Permissions;
-
         }
-
         #endregion
 
-        
         #region Execution du code
-        // Initialise et ajout des permissions au PermissionSet du domain à crée.
-
-        // Execute le code dans un nouveau domain. Le résultat de l'exécution sera mis dans un ficheir texte au nom C/.../NomDeLexecutable.result.txt 
-        //dans le même dossier ou se trouve l'executable. Pour faire cela, il faut rajouter ces lignes en dessous dans le main du programme.
-
-        //  StreamWriter result = new StreamWriter(System.Reflection.Assembly.GetEntryAssembly().Location+".result.txt");
-        //  Console.SetOut(result);
-        //   result.Flush();
-        //   result.Close();
 
         public static int ExecuteCode(Dictionary<string, IPermission> ListPersmissions, string Path)
         {
@@ -158,13 +135,12 @@ namespace SandBox
         }
 
         // Execution du sandbox dans un nouveau domain avec les permissions recues.
-
         private static int ExecuteDomain(PermissionSet permSet, string executableToTest, string UntrustedCodeFolderAbsolutePath)
         {
 
             AppDomainSetup adSetup = new AppDomainSetup();
             adSetup.ApplicationBase = Path.GetFullPath(UntrustedCodeFolderAbsolutePath);
-            
+
             StrongName fullTrustAssembly = typeof(SandBox).Assembly.Evidence.GetHostEvidence<StrongName>();
             AppDomain newDomain = AppDomain.CreateDomain("Sandbox", null, adSetup, permSet, fullTrustAssembly);
             try
@@ -190,5 +166,52 @@ namespace SandBox
         }
         #endregion
 
+    }
+}
+
+public class Sandboxer : MarshalByRefObject
+{
+    const string pathToUntrusted = @"..\..\..\UntrustedCode\bin\Debug";
+    const string untrustedAssembly = "UntrustedCode";
+    const string untrustedClass = "UntrustedCode.UntrustedClass";
+    const string entryPoint = "IsFibonacci";
+    private static Object[] parameters = { 45 };
+    static void Main()
+    {
+        AppDomainSetup adSetup = new AppDomainSetup();
+        adSetup.ApplicationBase = Path.GetFullPath(pathToUntrusted);
+
+        PermissionSet permSet = new PermissionSet(PermissionState.None);
+        permSet.AddPermission(new SecurityPermission(SecurityPermissionFlag.Execution));
+
+        StrongName fullTrustAssembly = typeof(Sandboxer).Assembly.Evidence.GetHostEvidence<StrongName>();
+
+        AppDomain newDomain = AppDomain.CreateDomain("Sandbox", null, adSetup, permSet, fullTrustAssembly);
+
+        //Use CreateInstanceFrom to load an instance of the Sandboxer class into the
+        //new AppDomain. 
+        ObjectHandle handle = Activator.CreateInstanceFrom(
+            newDomain, typeof(Sandboxer).Assembly.ManifestModule.FullyQualifiedName,
+            typeof(Sandboxer).FullName
+            );
+        //Unwrap the new domain instance into a reference in this domain and use it to execute the 
+        //untrusted code.
+        Sandboxer newDomainInstance = (Sandboxer)handle.Unwrap();
+        newDomainInstance.ExecuteUntrustedCode(untrustedAssembly, untrustedClass, entryPoint, parameters);
+    }
+    public void ExecuteUntrustedCode(string assemblyName, string typeName, string entryPoint, Object[] parameters)
+    {
+        MethodInfo target = Assembly.Load(assemblyName).GetType(typeName).GetMethod(entryPoint);
+        try
+        {
+            bool retVal = (bool)target.Invoke(null, parameters);
+        }
+        catch (Exception ex)
+        {
+            (new PermissionSet(PermissionState.Unrestricted)).Assert();
+            Console.WriteLine("SecurityException caught:\n{0}", ex.ToString());
+            CodeAccessPermission.RevertAssert();
+            Console.ReadLine();
+        }
     }
 }
