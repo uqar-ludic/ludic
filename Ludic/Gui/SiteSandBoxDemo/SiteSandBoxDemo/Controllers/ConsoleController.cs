@@ -39,6 +39,7 @@ namespace SiteSandBox.Controllers
             em.Errors.Add(new ErrorConsole(2, 142, "error on ..."));
             em.Errors.Add(new ErrorConsole(3, 840, "error on ..."));
             em.Errors.Add(new ErrorConsole(4, 1985, "error on ..."));
+            em.Code = "function test(){}";
             return em;
         }
 
@@ -78,6 +79,7 @@ namespace SiteSandBox.Controllers
 
         private ExerciceConsole Compile(ExerciceConsole exercice)
         {
+            exercice.OutCompil = "test2";
             return exercice;
         }
 

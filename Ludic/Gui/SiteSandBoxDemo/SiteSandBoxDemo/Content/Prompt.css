@@ -64,6 +64,26 @@
         margin: 5px;
     }
 
+ #OutCompil { 
+        position: relative;
+        border-radius: 15px;
+        background: #333333;
+        color: white;
+        resize:vertical;
+        height: 250px;
+        margin: 5px;
+    }
+
+ #OutSuccess { 
+        position: relative;
+        border-radius: 15px;
+        background: #333333;
+        color: white;
+        resize:vertical;
+        height: 250px;
+        margin: 5px;
+    }
+
  .ace_gutter-cell
  {
      background: #999;
