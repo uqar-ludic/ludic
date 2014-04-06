@@ -10,6 +10,7 @@ using System.Security.Policy;
 using System.Security.Permissions;
 using System.Diagnostics;
 using System.Reflection;
+using System.Runtime.Remoting;
 
 namespace SandBox
 {
@@ -109,11 +110,7 @@ namespace SandBox
             adSetup.ApplicationBase = Path.GetFullPath(UntrustedCodeFolderAbsolutePath);
             StrongName fullTrustAssembly = typeof(SandBox).Assembly.Evidence.GetHostEvidence<StrongName>();
             AppDomain newDomain = AppDomain.CreateDomain("Sandbox", null, adSetup, permSet, fullTrustAssembly);
-            //CrossDomainListener.CrossDomainTracer.CrossDomainTrace.StartListening(newDomain);
 
-            TextWriter originalConsoleOutput = Console.Out;
-            StringWriter writer = new StringWriter();
-            Console.SetOut(writer);
             try
             {
                 return newDomain.ExecuteAssembly(executableToTest);
@@ -128,13 +125,49 @@ namespace SandBox
             finally
             {
                 AppDomain.Unload(newDomain);
-                Console.SetOut(originalConsoleOutput);
-                StreamWriter stream = new StreamWriter(executableToTest + ".result.txt");
-                stream.WriteLine(writer.ToString());
-                stream.Close();
             }
         }
         #endregion
 
+    }
+}
+
+class Sandboxer : MarshalByRefObject
+{
+    const string pathToUntrusted = @"..\..\..\UntrustedCode\bin\Debug";
+    const string untrustedAssembly = "UntrustedCode";
+    const string untrustedClass = "UntrustedCode.UntrustedClass";
+    const string entryPoint = "IsFibonacci";
+    private static Object[] parameters = { 45 };
+    static void Main()
+    {
+        AppDomainSetup adSetup = new AppDomainSetup();
+        adSetup.ApplicationBase = Path.GetFullPath(pathToUntrusted);
+
+        PermissionSet permSet = new PermissionSet(PermissionState.None);
+        permSet.AddPermission(new SecurityPermission(SecurityPermissionFlag.Execution));
+
+        StrongName fullTrustAssembly = typeof(Sandboxer).Assembly.Evidence.GetHostEvidence<StrongName>();
+
+        AppDomain newDomain = AppDomain.CreateDomain("Sandbox", null, adSetup, permSet, fullTrustAssembly);
+
+        ObjectHandle handle = Activator.CreateInstanceFrom(newDomain, typeof(Sandboxer).Assembly.ManifestModule.FullyQualifiedName, typeof(Sandboxer).FullName);
+        Sandboxer newDomainInstance = (Sandboxer)handle.Unwrap();
+        newDomainInstance.ExecuteUntrustedCode(untrustedAssembly, untrustedClass, entryPoint, parameters);
+    }
+    public void ExecuteUntrustedCode(string assemblyName, string typeName, string entryPoint, Object[] parameters)
+    {
+        MethodInfo target = Assembly.Load(assemblyName).GetType(typeName).GetMethod(entryPoint);
+        try
+        {
+            bool retVal = (bool)target.Invoke(null, parameters);
+        }
+        catch (Exception ex)
+        {
+            (new PermissionSet(PermissionState.Unrestricted)).Assert();
+            Console.WriteLine("SecurityException caught:\n{0}", ex.ToString());
+            CodeAccessPermission.RevertAssert();
+            Console.ReadLine();
+        }
     }
 }

@@ -32,7 +32,6 @@ namespace WebSiteSandBox
         {
             SandBox.SandBox sb = new SandBox.SandBox();
             SandBox.SandBox.ExecuteCode(sb.CreatePermission(cheminPermissions, cheminExecutable), cheminExecutable);
-
         }
 
         [WebMethod]
@@ -54,24 +53,17 @@ namespace WebSiteSandBox
                     if (!t.Join(TimeSpan.FromSeconds(30)))
                     {
                         t.Abort();
-
                         throw new Exception("TimeOut dépassé !");
-
                     }
-
                 }
                 catch (Exception ex)
                 {
                     return String.Format("Exception caught:\n{0}", ex.ToString());
 
                 }
-                // Voir comment gérer s'il y'a plusieurs resultats du même exercice.
-
                 if (File.Exists(cheminExecutable + ".result.txt"))
                 {
                     String result = File.ReadAllText(cheminExecutable + ".result.txt");
-                    //File.Delete(cheminExecutable + ".result.txt");
-
                     return result;
                 }
                 else return "none";
