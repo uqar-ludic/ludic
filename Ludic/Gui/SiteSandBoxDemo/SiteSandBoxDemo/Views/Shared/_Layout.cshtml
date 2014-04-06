@@ -27,18 +27,18 @@
                     @RenderBody()
                 </div>
             </div>
-            <div>
-                <div class="content-wrapper col-lg-12">
-                    <div class="navbar-fixed-bottom navbar-inverse text-center">
-                        <a href="@Url.Action("Index", "Home")"><i class="glyphicon glyphicon-user"></i><b> Admin </b></a>
-                        | <a href="@Url.Action("Index", "Home")"><i class="glyphicon glyphicon-calendar"></i> <b id="date">@DateTime.Now</b></a>
-                        | <a href="@Url.Action("About", "Home")"><i class="glyphicon glyphicon-question-sign"></i><b> À propos de </b></a>
-                        | <a href="@Url.Action("Contact", "Home")"><i class="glyphicon glyphicon-envelope"></i><b> Contact </b></a>
-                    </div>
-                </div>
+            
+        </div>
+    <div>
+        <div class="content-wrapper col-lg-12">
+            <div class="navbar-fixed-bottom navbar-inverse text-center">
+                <a href="@Url.Action("Index", "Home")"><i class="glyphicon glyphicon-user"></i><b> Admin </b></a>
+                | <a href="@Url.Action("Index", "Home")"><i class="glyphicon glyphicon-calendar"></i> <b id="date">@DateTime.Now</b></a>
+                | <a href="@Url.Action("About", "Home")"><i class="glyphicon glyphicon-question-sign"></i><b> À propos de </b></a>
+                | <a href="@Url.Action("Contact", "Home")"><i class="glyphicon glyphicon-envelope"></i><b> Contact </b></a>
             </div>
         </div>
-        
+    </div>
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @Scripts.Render("~/bundles/Date")
