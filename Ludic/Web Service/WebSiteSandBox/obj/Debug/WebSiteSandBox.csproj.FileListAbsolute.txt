@@ -33,7 +33,6 @@ C:\Users\Quentin\Source\Repos\ludic\Ludic\Web Service\WebSiteSandBox\bin\WebSite
 C:\Users\Quentin\Source\Repos\ludic\Ludic\Web Service\WebSiteSandBox\bin\WebSiteSandBox.pdb
 C:\Users\Quentin\Source\Repos\ludic\Ludic\Web Service\WebSiteSandBox\bin\Compil.dll
 C:\Users\Quentin\Source\Repos\ludic\Ludic\Web Service\WebSiteSandBox\bin\Microsoft.CSharp.dll
-C:\Users\Quentin\Source\Repos\ludic\Ludic\Web Service\WebSiteSandBox\bin\SandBox.dll
 C:\Users\Quentin\Source\Repos\ludic\Ludic\Web Service\WebSiteSandBox\bin\System.ComponentModel.DataAnnotations.dll
 C:\Users\Quentin\Source\Repos\ludic\Ludic\Web Service\WebSiteSandBox\bin\System.Configuration.dll
 C:\Users\Quentin\Source\Repos\ludic\Ludic\Web Service\WebSiteSandBox\bin\System.Data.dll
@@ -46,7 +45,6 @@ C:\Users\Quentin\Source\Repos\ludic\Ludic\Web Service\WebSiteSandBox\bin\System.
 C:\Users\Quentin\Source\Repos\ludic\Ludic\Web Service\WebSiteSandBox\bin\System.Web.Entity.dll
 C:\Users\Quentin\Source\Repos\ludic\Ludic\Web Service\WebSiteSandBox\bin\System.Web.Services.dll
 C:\Users\Quentin\Source\Repos\ludic\Ludic\Web Service\WebSiteSandBox\bin\System.Xml.dll
-C:\Users\Quentin\Source\Repos\ludic\Ludic\Web Service\WebSiteSandBox\bin\SandBox.pdb
 C:\Users\Quentin\Source\Repos\ludic\Ludic\Web Service\WebSiteSandBox\bin\Compil.pdb
 C:\Users\Quentin\Source\Repos\ludic\Ludic\Web Service\WebSiteSandBox\obj\Debug\WebSiteSandBox.csprojResolveAssemblyReference.cache
 C:\Users\Quentin\Source\Repos\ludic\Ludic\Web Service\WebSiteSandBox\obj\Debug\WebSiteSandBox.dll
@@ -73,3 +71,5 @@ C:\Repos\ludic\Ludic\Web Service\WebSiteSandBox\bin\Compil.pdb
 C:\Repos\ludic\Ludic\Web Service\WebSiteSandBox\obj\Debug\WebSiteSandBox.csprojResolveAssemblyReference.cache
 C:\Repos\ludic\Ludic\Web Service\WebSiteSandBox\obj\Debug\WebSiteSandBox.dll
 C:\Repos\ludic\Ludic\Web Service\WebSiteSandBox\obj\Debug\WebSiteSandBox.pdb
+C:\Users\Quentin\Source\Repos\ludic\Ludic\Web Service\WebSiteSandBox\bin\SandboxV2.dll
+C:\Users\Quentin\Source\Repos\ludic\Ludic\Web Service\WebSiteSandBox\bin\SandboxV2.pdb

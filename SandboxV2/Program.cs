@@ -12,9 +12,9 @@ using System.Threading.Tasks;
 
 namespace SandboxV2
 {
-    class Sandboxer : MarshalByRefObject
+    public class Sandboxer : MarshalByRefObject
     {
-        private PermissionSet setPermissions(string permissionPath, string executablePath)
+        private static PermissionSet setPermissions(string permissionPath, string executablePath)
         {
             string[] permissions = File.ReadAllLines(permissionPath);
             string UntrustedCodeFolderAbsolutePath = permissionPath.Substring(0, permissionPath.LastIndexOf('\\'));
@@ -45,9 +45,9 @@ namespace SandboxV2
             set.AddPermission(new UIPermission(PermissionState.Unrestricted));
             set.AddPermission(new FileIOPermission(FileIOPermissionAccess.Read, executablePath));
             set.AddPermission(new FileIOPermission(FileIOPermissionAccess.PathDiscovery, executablePath));
-            set.AddPermission(new FileIOPermission(FileIOPermissionAccess.Read, @"D:\Result.txt"));
-            set.AddPermission(new FileIOPermission(FileIOPermissionAccess.PathDiscovery, @"D:\Result.txt"));
-            set.AddPermission(new FileIOPermission(FileIOPermissionAccess.Write, @"D:\Result.txt"));
+            set.AddPermission(new FileIOPermission(FileIOPermissionAccess.Read, executablePath + ".result.txt"));
+            set.AddPermission(new FileIOPermission(FileIOPermissionAccess.PathDiscovery, executablePath + ".result.txt"));
+            set.AddPermission(new FileIOPermission(FileIOPermissionAccess.Write, executablePath + ".result.txt"));
             set.AddPermission(new SecurityPermission(SecurityPermissionFlag.UnmanagedCode));
             return set;
         }
@@ -55,10 +55,8 @@ namespace SandboxV2
         const string untrustedAssembly = "AQGPI";
         const string untrustedClass = "AQGPI.Program";
         const string entryPoint = "Main";
-        const string executablePath = @"C:\Users\Quentin\Documents\Visual Studio 2013\Projects\AQGPI\AQGPI\bin\Debug\";
-        const string permissionPath = @"C:\Users\Quentin\Documents\Visual Studio 2013\Projects\AQGPI\AQGPI\bin\Debug\Permissions.txt";
 
-        public void ExecuteSandBox(string permissionPath, string executablePath)
+        public static void ExecuteSandBox(string permissionPath, string executablePath)
         {
             AppDomainSetup adSetup = new AppDomainSetup();
             adSetup.ApplicationBase = Path.GetFullPath(executablePath);
@@ -74,34 +72,33 @@ namespace SandboxV2
                 typeof(Sandboxer).FullName
                 );
             Sandboxer newDomainInstance = (Sandboxer)handle.Unwrap();
-            newDomainInstance.ExecuteUntrustedCode(untrustedAssembly, untrustedClass, entryPoint);
+            newDomainInstance.ExecuteUntrustedCode(executablePath, untrustedClass, entryPoint);
         }
 
         public void ExecuteUntrustedCode(string assemblyName, string typeName, string entryPoint)
         {
-            MethodInfo target = Assembly.Load(assemblyName).GetType(typeName).GetMethod(Assembly.Load(assemblyName).EntryPoint.Name, BindingFlags.Static | BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
-        try
-        {
-            FileStream ostrm = new FileStream(@"D:\Result.txt", FileMode.OpenOrCreate, FileAccess.Write); ;
-            StreamWriter writer = new StreamWriter(ostrm);
-            TextWriter oldOut = Console.Out;
+            AssemblyName an = AssemblyName.GetAssemblyName(assemblyName);
+            MethodInfo target = Assembly.Load(an).GetType(typeName).GetMethod(Assembly.Load(an).EntryPoint.Name, BindingFlags.Static | BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
+            try
+            {
+                FileStream ostrm = new FileStream(assemblyName + ".result.txt", FileMode.OpenOrCreate, FileAccess.Write); ;
+                StreamWriter writer = new StreamWriter(ostrm);
+                TextWriter oldOut = Console.Out;
 
-            Console.SetOut(writer);
+                Console.SetOut(writer);
         
-            target.Invoke(null, null);
+                target.Invoke(null, null);
 
-            Console.SetOut(oldOut);
-            writer.Close();
-            ostrm.Close();
-            Console.WriteLine("Done");
-        }
-        catch (Exception ex)
-        {
-            (new PermissionSet(PermissionState.Unrestricted)).Assert();
-            Console.WriteLine("SecurityException caught:\n{0}", ex.ToString());
-            CodeAccessPermission.RevertAssert();
-        }
-        Console.ReadKey();
+                Console.SetOut(oldOut);
+                writer.Close();
+                ostrm.Close();
+            }
+            catch (Exception ex)
+            {
+                (new PermissionSet(PermissionState.Unrestricted)).Assert();
+                Console.WriteLine("SecurityException caught:\n{0}", ex.ToString());
+                CodeAccessPermission.RevertAssert();
+            }
         }
     }
 }

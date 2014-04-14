@@ -45,9 +45,8 @@
     <Reference Include="Microsoft.CSharp">
       <Private>True</Private>
     </Reference>
-    <Reference Include="SandBox, Version=1.0.0.0, Culture=neutral, PublicKeyToken=5dc08e2badac35bb, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\SandBox\bin\Debug\SandBox.dll</HintPath>
+    <Reference Include="SandboxV2">
+      <HintPath>..\..\..\SandboxV2\bin\Debug\SandboxV2.dll</HintPath>
     </Reference>
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Web.DynamicData">
@@ -114,6 +113,9 @@
       <Project>{fc687fc1-3428-4dfb-93d3-198375839073}</Project>
       <Name>Compil</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

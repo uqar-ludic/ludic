@@ -43,8 +43,8 @@
       <HintPath>..\..\..\Web Service\Test Compil\bin\Release\Compil.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="SandBox">
-      <HintPath>..\..\..\Web Service\SandBox\bin\Release\SandBox.dll</HintPath>
+    <Reference Include="SandboxV2">
+      <HintPath>..\..\..\..\SandboxV2\bin\Debug\SandboxV2.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />

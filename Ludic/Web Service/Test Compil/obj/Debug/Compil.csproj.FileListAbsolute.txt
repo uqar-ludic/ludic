@@ -9,3 +9,9 @@ C:\Repos\ludic\Ludic\Web Service\Test Compil\bin\Debug\Compil.pdb
 C:\Repos\ludic\Ludic\Web Service\Test Compil\obj\Debug\Compil.csprojResolveAssemblyReference.cache
 C:\Repos\ludic\Ludic\Web Service\Test Compil\obj\Debug\Compil.dll
 C:\Repos\ludic\Ludic\Web Service\Test Compil\obj\Debug\Compil.pdb
+C:\Users\Quentin\Source\Repos\ludic\Ludic\Web Service\Test Compil\bin\Debug\Compil.dll.config
+C:\Users\Quentin\Source\Repos\ludic\Ludic\Web Service\Test Compil\bin\Debug\Compil.dll
+C:\Users\Quentin\Source\Repos\ludic\Ludic\Web Service\Test Compil\bin\Debug\Compil.pdb
+C:\Users\Quentin\Source\Repos\ludic\Ludic\Web Service\Test Compil\obj\Debug\Compil.csprojResolveAssemblyReference.cache
+C:\Users\Quentin\Source\Repos\ludic\Ludic\Web Service\Test Compil\obj\Debug\Compil.dll
+C:\Users\Quentin\Source\Repos\ludic\Ludic\Web Service\Test Compil\obj\Debug\Compil.pdb
