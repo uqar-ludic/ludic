@@ -23,7 +23,7 @@ namespace WebSiteSandBox
     // [System.Web.Script.Services.ScriptService]
     public class SandBoxWebService : System.Web.Services.WebService
     {
-        
+        //Compile sln and return the log as text
         [WebMethod]
         public string CompilSln(string slnPath, string logPath)
         {
@@ -31,6 +31,7 @@ namespace WebSiteSandBox
             return File.ReadAllText(logPath);
         }
 
+        //Execute the assembly in a new thread and return the log as text
         [WebMethod]
         public string Execute(String cheminPermissions, String cheminExecutable)
         {

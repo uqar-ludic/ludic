@@ -14,6 +14,7 @@ namespace SandboxV2
 {
     public class Sandboxer : MarshalByRefObject
     {
+        //Generate permissions for the execution in the new domain, according to the permission file givan as parameter
         private static PermissionSet setPermissions(string permissionPath, string executablePath)
         {
             string[] permissions = File.ReadAllLines(permissionPath);
@@ -52,21 +53,32 @@ namespace SandboxV2
             return set;
         }
 
+        #region HardCodedVariables
+        //This variables have to be replaced with :
+        //          - untrustedAssembly => name of the solution you want to run
+        //          - untrustedClass => name of the class you want to run with its assembly name
+        //          - entryPoint => should always be the Main function of the program, can be changed
         const string untrustedAssembly = "AQGPI";
         const string untrustedClass = "AQGPI.Program";
         const string entryPoint = "Main";
+        #endregion
 
         public static void ExecuteSandBox(string permissionPath, string executablePath)
         {
+            //Setup the new domain with the path to the executable file as parameter 
             AppDomainSetup adSetup = new AppDomainSetup();
             adSetup.ApplicationBase = Path.GetFullPath(executablePath);
 
+            //Set the permissions
             PermissionSet permSet = setPermissions(permissionPath, executablePath);
 
+            //Get the StrongName of the assembly
             StrongName fullTrustAssembly = typeof(Sandboxer).Assembly.Evidence.GetHostEvidence<StrongName>();
 
+            //Create the domain which will be used to run the assembly
             AppDomain newDomain = AppDomain.CreateDomain("Sandbox", null, adSetup, permSet, fullTrustAssembly);
 
+            //Allow to keep control of the newly created assembly in the curretn asssembly
             ObjectHandle handle = Activator.CreateInstanceFrom(
                 newDomain, typeof(Sandboxer).Assembly.ManifestModule.FullyQualifiedName,
                 typeof(Sandboxer).FullName
@@ -77,16 +89,19 @@ namespace SandboxV2
 
         public void ExecuteUntrustedCode(string assemblyName, string typeName, string entryPoint)
         {
+            //Get the assembly name and the method to run
             AssemblyName an = AssemblyName.GetAssemblyName(assemblyName);
             MethodInfo target = Assembly.Load(an).GetType(typeName).GetMethod(Assembly.Load(an).EntryPoint.Name, BindingFlags.Static | BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
             try
             {
+                //Generate the output file
                 FileStream ostrm = new FileStream(assemblyName + ".result.txt", FileMode.OpenOrCreate, FileAccess.Write); ;
                 StreamWriter writer = new StreamWriter(ostrm);
                 TextWriter oldOut = Console.Out;
 
                 Console.SetOut(writer);
-        
+                
+                //Invoke the method
                 target.Invoke(null, null);
 
                 Console.SetOut(oldOut);
