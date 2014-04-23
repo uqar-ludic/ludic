@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SiteSandBox", "Gui\SiteSand
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Compil", "Compil\Compil.csproj", "{FC687FC1-3428-4DFB-93D3-198375839073}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebSiteSandBox", "Web Service\WebSiteSandBox.csproj", "{4AE5B0A3-9A85-4D0B-BB39-59C239F065BB}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebServiceSandBox", "Web Service\WebServiceSandBox.csproj", "{4AE5B0A3-9A85-4D0B-BB39-59C239F065BB}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SiteSandBoxDemo", "Gui\SiteSandBoxDemo\SiteSandBoxDemo\SiteSandBoxDemo.csproj", "{5C528E65-9784-4BF2-B5E8-A2309B1409AE}"
 EndProject
