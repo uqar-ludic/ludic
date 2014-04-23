@@ -109,7 +109,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Test Compil\Compil.csproj">
+    <ProjectReference Include="..\Compil\Compil.csproj">
       <Project>{fc687fc1-3428-4dfb-93d3-198375839073}</Project>
       <Name>Compil</Name>
     </ProjectReference>
