@@ -1,0 +1,173 @@
+﻿@model SiteSandBox.Models.ExerciceConsole
+
+@using (Html.BeginForm("Edit", "Console", FormMethod.Post, new { id = "ConsoleForm" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary()
+    @Html.HiddenFor(model => model.Action, new { @id = "ActionConsole"})
+    
+    @section SideBar {
+        @Html.Partial("_SideBarPartial")
+    }
+    
+    <h2 style="margin-top:-15px;">Exercice n° <small style="color:#d2322d;">@Model.IdExercice</small></h2>
+    <h3>Console : </h3>
+    <div class="ConsoleContainer row">
+		<div class="line-nums col-sm-1" id="NumConsole"><span>1</span></div>
+        @Html.TextAreaFor(model => model.Code, new { @class = "col-sm-11 Console", @id = "Console" })
+    </div>
+    <div id="tabEdition" class="btn-group full-width-tabs" data-toggle="buttons-radio">
+        <ul class="nav nav-tabs">
+            <li class="take-all-space-you-can active"><a href="#sorties" class="btn btn-block btn-success" data-toggle="tab">Sorties</a></li>
+            <li class="take-all-space-you-can"><a href="#messages" class="btn btn-block btn-success" data-toggle="tab">Message d'erreur</a></li>
+            <li class="take-all-space-you-can"><a href="#sujet" class="btn btn-block btn-success" data-toggle="tab">Sujet</a></li>
+            <li class="take-all-space-you-can"><a href="#succés" class="btn btn-block btn-success" data-toggle="tab">Succés</a></li>
+        <li class="take-all-space-you-can"><a href="#commentaires" class="btn btn-block btn-success" data-toggle="tab">Commentaires</a></li>
+        </ul>
+    </div>
+    <div>
+        <div class="tab-content" style="border-bottom-left-radius:2px;border-bottom-right-radius:2px;">
+            <div class="tab-pane wellEd active" id="sorties">
+                <h4>Sorties attendues</h4>
+                <div>
+                    @Html.TextAreaFor(model => model.OutSuccess, new { @id = "Console1", @class = "col-sm-12", @style = "height: 100px; background: #333333; color: white; border-radius: 15px; resize: vertical;" })
+                </div>
+                <h4>Sorties reçues</h4>
+                <div>
+                    @Html.TextAreaFor(model => model.OutCompil, new { @id = "Console2", @class = "col-sm-12", @style = "height: 100px; background: #333333; color: white; border-radius: 15px; resize: vertical;" })
+                </div>
+            </div>
+            <div class="tab-pane wellEd" id="messages">
+                <table class="table table-striped">
+                    <thead><tr><th>N° </th><th>Ligne</th><th>Message</th></tr></thead>
+                    <tbody>
+                        @foreach (var item in Model.Errors) {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.IdError)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Line)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Message)
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+            <div class="tab-pane wellEd" id="sujet">
+                <h4>Sujet</h4>
+                @Model.Subject
+            </div>
+            <div class="tab-pane wellEd" id="succés">
+                <h4>Progression :</h4>
+                <div class="progress">
+                    @foreach (var item in Model.ProgressBar())
+                    {
+                        @*@Model.Success.SingleOrDefault(s => s.IdSucess == Model.ProgressBar().IndexOf(item)).Description*@
+                        if (item.Y > 10)
+                        {
+                            <div class="progress-bar" style="width: @(item.X - 1)%"><span class="sr-only">@(item.X - 1)% Complete</span></div>
+                            switch ((int)item.Y)
+                            {
+                                case 11:
+                                    <div class="progress-bar progress-bar-success" style="width: 1%"><a href="#" class="btn" data-toggle="tooltip Console" title="@item.Message">1% Complete</a></div>
+                                    break;
+                                case 12:
+                                <div class="progress-bar progress-bar-warning" style="width: 1%"><a href="#" class="btn" data-toggle="tooltip Console" title="@item.Message">1% Complete</a></div>
+                                    break;
+                                case 13:
+                                <div class="progress-bar progress-bar-danger" style="width: 1%"><a href="#" class="btn" data-toggle="tooltip Console" title="@item.Message">1% Complete</a></div>
+                                    break;
+                            }
+                        }
+                        else
+                        {
+                            <div class="progress-bar progress-bar-info" style="width: @(item.X - 1)%"><span class="sr-only">@(item.X - 1)% Complete</span></div>
+                            switch ((int)item.Y)
+                            {
+                                case 1:
+                                    <div class="progress-bar progress-bar-success" style="width: 1%"><a href="#" class="btn" data-toggle="tooltip Console" title="@item.Message">1% Complete</a></div>
+                                    break;
+                                case 2:
+                                <div class="progress-bar progress-bar-warning" style="width: 1%"><a href="#" class="btn" data-toggle="tooltip Console" title="@item.Message">1% Complete</a></div>
+                                    break;
+                                case 3:
+                                <div class="progress-bar progress-bar-danger" style="width: 1%"><a href="#" class="btn" data-toggle="tooltip Console" title="@item.Message">1% Complete</a></div>
+                                    break;
+                            }
+                        }
+                    }
+                </div>
+            </div>
+            <div class="tab-pane wellEd" id="commentaires">
+                <h4>Note pour l'exercice n°@Model.IdExercice</h4>
+                @Html.HiddenFor(model => model.Value, new { @id = "rating"})
+                <fieldset class="rating">
+                    @for (int i = 5; i > Model.Value; i--)
+                    {
+                        <input type="radio" id="star@(i)" name="rating" value="@(i)" onclick="javascript:test(this)"/><label for="star@(i)">@(i) stars</label>
+                    }
+                    @for (int i = Model.Value; i > 0 ; i--)
+                    {
+                        <input type="radio" id="star@(i)" name="rating" value="@(i)" onclick="javascript:test(this)" checked/><label for="star@(i)">@(i) stars</label>
+                    }
+                </fieldset>
+                Vous avez noté l'exercice sur <span id="count">@Model.Value</span> étoile(s)
+                <h4>Vote commentaire : </h4>
+                <div class="accordion" id="accordion3">
+                    <div class="accordion-group">
+                        <div class="accordion-heading">
+                            <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion3" href="#collapseComment">
+                                <span class="btn btn-warning col-lg-12" style="border-bottom-left-radius:0px;border-bottom-right-radius:0px;"><i class="glyphicon glyphicon-leaf"> Laisser votre commentaire </i></span>
+                            </a>
+                        </div>
+                        <div id="collapseComment" class="accordion-body collapse">
+                            <div class="accordion-inner col-lg-12 wellEd-orange well-sm">
+                                <div>@Html.TextBoxFor(model => model.Posted.Title, new { @class = "form-control", @placeholder = "Titre...", @name = "titre"})</div>
+                                @Html.TextAreaFor(model => model.Posted.Comment, new { @class = "form-control", @rows = "5", @cols = "50", @style = "margin-top:10px;resize:none;",  @name = "comment",  @placeholder = "Laisser votre commentaire..." })
+                                <a href="javascript:ConsoleFormComment()" class="btn btn-success center-block" style="margin-top:10px;">Soumettre</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div style="margin-top: 10px;">
+                    <h4>Commentaires : </h4>
+                    @foreach (var item in Model.Comments)
+                    {
+                        <div>
+                            <div>
+                                <span class="label label-info">@Html.DisplayFor(modelItem => item.Title)</span>
+                            </div>
+                            <div>
+                                @Html.DisplayFor(modelItem => item.Comment)
+                            </div>
+                            <div>
+                                <span class="badge">Posté par @item.UserName à @item.Date.ToString()</span>
+                            </div>
+                        </div>
+
+                    }
+                    @*<div class="pager" id="pager">
+                        <ul>
+                            <li><a href="#">Prev</a></li>
+                            <li><a href="#">1</a></li>
+                            <li><a href="#">2</a></li>
+                            <li><a href="#">3</a></li>
+                            <li><a href="#">4</a></li>
+                            <li><a href="#">5</a></li>
+                            <li><a href="#">Next</a></li>
+                        </ul>
+                    </div>*@
+                </div>
+            </div>
+        </div>
+    </div>
+}
+@Scripts.Render("~/bundles/Console")
+@Scripts.Render("~/bundles/Behave")
+@Scripts.Render("~/bundles/Prompt")
+@Scripts.Render("~/bundles/Star")
+
