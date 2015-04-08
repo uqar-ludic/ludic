@@ -109,12 +109,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Compil\Compil.csproj">
-      <Project>{fc687fc1-3428-4dfb-93d3-198375839073}</Project>
-      <Name>Compil</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <PropertyGroup>

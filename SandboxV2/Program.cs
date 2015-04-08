@@ -10,34 +10,33 @@ using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SandboxV2
-{
-    public class Sandboxer : MarshalByRefObject {
-      //Generate permissions for the execution in the new domain, according to the permission file givan as parameter
-      private static PermissionSet setPermissions(string permissionPath, string executablePath) {
-        string[] permissions = File.ReadAllLines(permissionPath);
-        string UntrustedCodeFolderAbsolutePath = permissionPath.Substring(0, permissionPath.LastIndexOf('\\'));
-        PermissionSet set = new PermissionSet(PermissionState.None);
+namespace SandboxV2 {
+  public class Sandboxer : MarshalByRefObject {
+    //Generate permissions for the execution in the new domain, according to the permission file givan as parameter
+    private static PermissionSet setPermissions(string permissionPath, string executablePath) {
+      string[] permissions = File.ReadAllLines(permissionPath);
+      string UntrustedCodeFolderAbsolutePath = permissionPath.Substring(0, permissionPath.LastIndexOf('\\'));
+      PermissionSet set = new PermissionSet(PermissionState.None);
 
-        foreach (string perm in permissions) {
-          switch (perm.ToUpper()) {
-            case "WRITE":
-              FileIOPermission f2 = new FileIOPermission(FileIOPermissionAccess.Read, UntrustedCodeFolderAbsolutePath);
-              f2.AddPathList(FileIOPermissionAccess.Write, UntrustedCodeFolderAbsolutePath);
-              set.AddPermission(f2);
-              break;
-            case "READ":
-              FileIOPermission f3 = new FileIOPermission(FileIOPermissionAccess.Read, UntrustedCodeFolderAbsolutePath);
-              f3.AddPathList(FileIOPermissionAccess.Write | FileIOPermissionAccess.Read, UntrustedCodeFolderAbsolutePath);
-              set.AddPermission(f3);
-              break;
-            case "CREATEFILE":
-              FileIOPermission f4 = new FileIOPermission(FileIOPermissionAccess.Read, UntrustedCodeFolderAbsolutePath);
-              f4.AddPathList(FileIOPermissionAccess.Write | FileIOPermissionAccess.Read, UntrustedCodeFolderAbsolutePath);
-              set.AddPermission(f4);
-              break;
-          }
+      foreach (string perm in permissions) {
+        switch (perm.ToUpper()) {
+          case "WRITE":
+            FileIOPermission f2 = new FileIOPermission(FileIOPermissionAccess.Read, UntrustedCodeFolderAbsolutePath);
+            f2.AddPathList(FileIOPermissionAccess.Write, UntrustedCodeFolderAbsolutePath);
+            set.AddPermission(f2);
+            break;
+          case "READ":
+            FileIOPermission f3 = new FileIOPermission(FileIOPermissionAccess.Read, UntrustedCodeFolderAbsolutePath);
+            f3.AddPathList(FileIOPermissionAccess.Write | FileIOPermissionAccess.Read, UntrustedCodeFolderAbsolutePath);
+            set.AddPermission(f3);
+            break;
+          case "CREATEFILE":
+            FileIOPermission f4 = new FileIOPermission(FileIOPermissionAccess.Read, UntrustedCodeFolderAbsolutePath);
+            f4.AddPathList(FileIOPermissionAccess.Write | FileIOPermissionAccess.Read, UntrustedCodeFolderAbsolutePath);
+            set.AddPermission(f4);
+            break;
         }
+      }
       set.AddPermission(new SecurityPermission(SecurityPermissionFlag.Execution));
       set.AddPermission(new UIPermission(PermissionState.Unrestricted));
       set.AddPermission(new FileIOPermission(FileIOPermissionAccess.Read, executablePath));
@@ -88,12 +87,13 @@ namespace SandboxV2
       MethodInfo target = Assembly.Load(an).GetType(typeName).GetMethod(Assembly.Load(an).EntryPoint.Name, BindingFlags.Static | BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
       try {
         //Generate the output file
-        FileStream ostrm = new FileStream(assemblyName + ".result.txt", FileMode.OpenOrCreate, FileAccess.Write); ;
+        FileStream ostrm = new FileStream(assemblyName + ".result.txt", FileMode.OpenOrCreate, FileAccess.Write);
+        ;
         StreamWriter writer = new StreamWriter(ostrm);
         TextWriter oldOut = Console.Out;
 
         Console.SetOut(writer);
-                
+
         //Invoke the method
         target.Invoke(null, null);
 
