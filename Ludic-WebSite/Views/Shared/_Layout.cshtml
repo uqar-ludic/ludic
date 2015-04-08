@@ -1,0 +1,142 @@
+﻿<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta charset="utf-8" />
+  <title>@ViewBag.Title - Ludic</title>
+  <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+  <meta name="viewport" content="width=device-width" />
+  @Styles.Render("~/Content/css")
+  @Styles.Render("~/Content/theme/dahsgum/css")
+  @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+  <section id="container">
+    <header class="header black-bg">
+      <div class="sidebar-toggle-box">
+        <div class="fa fa-bars tooltips" data-placement="right" data-original-title="Toggle Navigation">
+        </div>
+      </div>
+      @Html.ActionLink("votre logo ici", "Index", "Home", routeValues: null, htmlAttributes: new { @class = "logo" })
+      <div class="nav notify-row" id="top_menu">
+        <ul class="nav top-menu">
+          <li class="dropdown">
+            <a href="#" data-toggle="dropdown" class="dropdown-toggle">
+              <i class="fa fa-tasks"></i><span class="badge bg-theme">4</span>
+            </a>
+            <ul class="dropdown-menu extended task-bar">
+              <div class="notify-arrow notify-arrow-green"></div>
+              <li>
+                <p class="green">Vous avez 4 exercices en cours</p>
+              </li>
+              <li>
+                <a href="#">
+                  <div class="task-info">
+                    <div class="desc">Exercice #1</div>
+                    <div class="percent">40%</div>
+                  </div>
+                  <div class="progress progress-striped">
+                    <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%"></div>
+                  </div>
+                </a>
+              </li>
+              <li>
+                <a href="#">
+                  <div class="task-info">
+                    <div class="desc">Exercice #2</div>
+                    <div class="percent">40%</div>
+                  </div>
+                  <div class="progress progress-striped">
+                    <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%"></div>
+                  </div>
+                </a>
+              </li>
+              <li>
+                <a href="#">
+                  <div class="task-info">
+                    <div class="desc">Exercice #3</div>
+                    <div class="percent">40%</div>
+                  </div>
+                  <div class="progress progress-striped">
+                    <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%"></div>
+                  </div>
+                </a>
+              </li>
+              <li>
+                <a href="#">
+                  <div class="task-info">
+                    <div class="desc">Exercice #4</div>
+                    <div class="percent">40%</div>
+                  </div>
+                  <div class="progress progress-striped">
+                    <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%"></div>
+                  </div>
+                </a>
+              </li>
+              <li class="external">
+                <a href="#">Voir tous les exercices</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+      <div class="top-menu">
+        @Html.Partial("_LoginPartial")
+      </div>
+    </header>
+
+    <aside>
+      <div id="sidebar" class="nav-collapse">
+        <ul class="sidebar-menu" id="nav-accordion">
+          <p class="centered">Votre avatar</p>
+          <h5 class="centered">Maxime Vincent</h5>
+          <li>
+            <a class="@(String.Compare(ViewBag.siteMap, "/Home", true) == 0 ? "active" : "")" href="@Url.Action("Index", "Home")">
+              <i class="fa fa-dashboard"></i>
+              <span>Tableau de bord</span>
+            </a>
+          </li>
+          <li class="sub-menu">
+            <a class="@(String.Compare(ViewBag.siteMap, 0, "/Exercice", 0, 9, true) == 0 ? "active" : "")" href="javascript:;">
+              <i class="fa fa-desktop"></i>
+              <span>Exercice</span>
+              <span class="dcjq-icon"></span>
+            </a>
+            <ul class="sub">
+              <li class="@(String.Compare(ViewBag.siteMap, "/Exercice/Console", true) == 0 ? "active" : "")">@Html.ActionLink("Console", "Console", "Exercice")</li>
+              <li class="@(String.Compare(ViewBag.siteMap, "/Exercice/List", true) == 0 ? "active" : "")">@Html.ActionLink("Liste", "List", "Exercice")</li>
+              <li class="@(String.Compare(ViewBag.siteMap, "/Exercice/Score", true) == 0 ? "active" : "")">@Html.ActionLink("Scores", "Score", "Exercice")</li>
+            </ul>
+          </li>
+          <li>
+            <a class="@(String.Compare(ViewBag.siteMap, "/Home/About", true) == 0 ? "active" : "")" href="@Url.Action("About", "Home") ">
+              <i class=" fa fa-user">
+              </i>
+              <span>A propos de</span>
+            </a>
+          </li>
+          <li>
+            <a class="@(String.Compare(ViewBag.siteMap, "/Home/Contact", true) == 0 ? "active" : "")" href="@Url.Action("Contact", "Home")">
+              <i class="fa fa-envelope"></i>
+              <span>Contact</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </aside>
+
+    <section id="main-content">
+      <section class="wrapper site-min-height">
+        @RenderSection("featured", required: false)
+        @RenderBody()
+      </section>
+    </section>
+    <footer class="site-footer">
+      <div class="text-center">&copy; @DateTime.Now.Year - Mon application ASP.NET MVC</div>
+    </footer>
+  </section>
+</body>
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/common")
+@RenderSection("scripts", required: false)
+</html>
